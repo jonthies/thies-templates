@@ -1,0 +1,162 @@
+<style>
+  {{ assetBody "newsletter.css"}}
+</style>
+
+<div style="
+    display: none !important;
+    visibility: hidden;
+    mso-hide: all;
+    font-size: 1px;
+    line-height: 1px;
+    max-height: 0px;
+    max-width: 0px;
+    opacity: 0;
+    overflow: hidden;
+  ">
+  {{ .preheader }}
+</div>
+
+<table class="main" align="center" width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td id="main-cell">&nbsp;&nbsp;<br></td>
+      <td>
+        <br>
+        <table>
+          <tbody>
+            <tr>
+              <td>&nbsp;<br></td>
+            </tr>
+            <tr>
+              <td>
+                <table class="container" align="center" cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="top">
+                        <table class="content_header_link" border="0" cellpadding="0" cellspacing="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td align="left" valign="top" class="entry_content_uri">
+                                <a href="{{ token .article.uri }}">View in browser</a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        {{ if .instance.metadata.theme.banner }}
+                        <table class="header_logo" align="center" cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center>
+                                  <a target="_blank" href="{{ .theme.home}}">
+                                    <img src="{{ .theme.banner }}" border="0" alt="{{ .instance.title }}" class="header_logo_img">
+                                  </a>
+                                </center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        {{ end }} {{ if .article.image_uri }}
+                        <table class="header_logo" align="center" cellpadding="20px" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <center>
+                                  <img src="{{ .article.image_uri }}" border="0" alt="{{ .article.title }}" width="400">
+                                </center>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        {{ end }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table class="content" align="center" cellpadding="0" cellspacing="0" border="0">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 0px !important; padding-top: 0px !important">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" style="padding-bottom: 0">
+                                        <a href="{{ token .article.uri }}">
+                                          <h1>{{ .article.title }}</h1>
+                                        </a>
+                                        <span class="date"> {{ timeFormat .article.published_at "dddd, LL"}} </span>
+                                        <span class="date"> By: {{ .article.author }} </span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="content_body">
+                                  <tbody>
+                                    <tr>
+                                      <td align="left" valign="top" class="article">{{ .article.body }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="10"><br></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td class="footer_container">
+                <table border="0" cellpadding="0" align="center" cellspacing="0" width="100%">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span class="si"> Subscription Information<br><br> </span>
+                        <span class="subscriber">
+                          {{if .member.email }} Member: {{ .member.name }}<br>
+                          Email: <a href="mailto:{{ .member.email }}">{{ .member.email }}</a><br>
+                          {{ if .subscription.created_at}} {{ if .account.created_at }} Member since: {{timeFormat
+                          .account.created_at "LL"}}<br>
+                          {{ else }} Member since: {{timeFormat .subscription.created_at "LL"}}<br>
+                          {{ end }} {{if .subscription.canceled}} Auto-renewal is disabled<br>
+                          Expiration date: {{ timeFormat .subscription.ends_at "LL"}}<br>
+                          {{else}} Your subscription renews every {{ .subscription.recurring_interval }}<br>
+                          Renewal date: {{ timeFormat .subscription.ends_at "LL"}}<br>
+                          {{end}} {{end}}{{end}}<br><br>
+                          You are receiving this email because you are subscribed to
+                          <a target="_blank" href="{{ .theme.home}}">{{ .instance.title }}</a>.<br><br>
+                          <a target="_blank" href="{{ session (member `/account`)}}">Click here</a> to view your account
+                          and manage your subscriptions.<br>
+                          <!--{{ with $redirectURI := (member "/unsubscribe") }} ---->
+                          <!--{{  $optout := (urlencode (optOut $redirectURI)) }} ---->
+                          <!--{{  $unsubscribe := (member (print "/unsubscribe?unsub=" $optout)) }} ---->
+                          <a target="_blank" href="{{$unsubscribe}}">Click here</a> to unsubscribe.<br>
+                          <!-- {{end}} -->
+                        </span>
+                        <span class="copyright">
+                          <br><em>
+                            © {{ timeFormat .article.published_at "YYYY"}}
+                            <a class="em_black" href="{{ .theme.home}}">{{ .instance.title}}</a>,
+                            <!-- Stree Address Goes Here<br> -->
+                          </em>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td><br>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

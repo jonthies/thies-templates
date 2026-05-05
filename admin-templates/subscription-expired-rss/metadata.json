@@ -1,0 +1,25 @@
+{
+  "name": "Subscription Expired RSS",
+  "slug": "subscription-expired-rss",
+  "type": "admin",
+  "channel": "rss",
+  "title": "Your subscription to {{ .instance.title }} has expired.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.subscription.deleted",
+      "channel": "rss",
+      "enabled": false,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

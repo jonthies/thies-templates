@@ -1,0 +1,15 @@
+{
+  "name": "Messaging",
+  "slug": "messaging",
+  "type": "article",
+  "channel": "sms",
+  "title": "",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

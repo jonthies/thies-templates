@@ -1,0 +1,126 @@
+<style>
+  {{ assetBody "the-ankler-welcome.css" }}
+</style>
+
+{{ $theme := theme }}
+{{ $instance := instance }}
+
+<div style="display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+  Welcome to {{ $instance.title }}!
+</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" class="email-outer-wrapper">
+  <tbody>
+    <tr>
+      <td align="center" class="email-centering-cell">
+        <table width="600" border="0" cellpadding="0" cellspacing="0" role="presentation" class="email-container">
+          <tbody>
+
+            <!-- Header / Logo -->
+            <tr>
+              <td align="center" class="email-header-cell">
+                <a target="_blank" href="{{ $instance.metadata.home }}" class="email-header-link">
+                  {{ if $theme.banner }}
+                    <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}" class="email-header-logo">
+                  {{ else }}
+                    <span class="email-header-text">{{ $instance.title }}</span>
+                  {{ end }}
+                </a>
+              </td>
+            </tr>
+
+            <!-- Main Content -->
+            <tr>
+              <td class="email-body-cell">
+
+                <h3><strong>Welcome!&nbsp;&nbsp;</strong></h3>
+
+                <p><strong>Thank you for subscribing</strong> to {{ $instance.title }}, and joining the smartest people in the industry who already rely on us to be better informed on the job and about the industry through impartial, unrivaled and uncompromised journalism, always with a dose of wit.&nbsp;</p>
+
+                <p>You can pick and choose what you receive <a target="_blank" href="{{ session (member `/account/delivery`) }}">here</a>. If you want to receive all our offerings, there's nothing else to do, you're signed up automatically. Advertisers: please contact London Sanders at <a href="mailto:London@theankler.com">London@theankler.com</a>.&nbsp;</p>
+
+                <h4><em><a target="_blank" href="{{ $instance.metadata.home }}">Paid subscribers</a> <span>can receive</span></em><span>:</span></h4>
+
+                <p><em><strong>Full access to 10 newsletters in your inbox, or on the Substack app, including</strong></em><span>:</span></p>
+
+                <ul>
+                  <li><p><strong>Richard Rushfield from The Ankler</strong>, where chief columnist Richard Rushfield tackles the current state of entertainment.</p>
+                    <ul><li><p><em>Every Tue. and Thurs.</em></p></li></ul>
+                  </li>
+                  <li><p><strong>The Wakeup</strong>, a daily rundown of the media and entertainment news you need to start your day, from <strong>Sean McNulty.</strong></p>
+                    <ul><li><p><em>Five days a week</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Series Business</strong> covers the TV market for sellers and buyers with news, features and scoops, and is led by <strong>Elaine Low, Lesley Goldberg</strong> and <strong>Manori Ravindran</strong> (international).</p>
+                    <ul><li><p><em>Every Mon., Weds. and Thurs.</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Prestige Junkie</strong> focuses on the best talent, series and movies during awards season, from <strong>Katey Rich.&nbsp;</strong></p>
+                    <ul><li><p><em>Newsletters every Mon. and Thurs.; podcast every Tues.</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Entertainment Strategy Guy</strong>, an anonymous former streaming exec, delivers stats, strategy and analysis.</p>
+                    <ul><li><p><em>Every other Thurs.&nbsp;</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Reel A.I.</strong> delivers insights about AI's impact on work and its practical applications, from Wild Sheep Content CEO <strong>Erik Barmack.</strong></p>
+                    <ul><li><p><em>Every other Tues.</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Dealmakers</strong> features the lawyers, agents and business people that turn every handshake into lucrative, successful and industry-defining deals, from <strong>Ashley Cullins.</strong></p>
+                    <ul><li><p><em>Every other Tues.</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Crowd Pleaser</strong> goes in-depth on the audience trends shaping entertainment, from <strong>Matthew Frank.</strong></p>
+                    <ul><li><p><em>Every other Weds.</em></p></li></ul>
+                  </li>
+                  <li><p><strong>Notable</strong> spotlights where music and Hollywood meet, containing interviews by <strong>Rob LeDonne</strong> with musical luminaries and Oscar nominees like Elton John.</p></li>
+                  <li><p><strong>Todd on the Town</strong>, a photo newsletter of parties, premieres and more - courtesy of photographer <strong>Todd Williamson.</strong></p></li>
+                  <li><p><strong>Ankler Features</strong> are deeper dives from top industry journalists including <strong>Claire Atkinson</strong> and <strong>Nicole LaPorte</strong>, and is published weekly.</p></li>
+                </ul>
+
+                <p><em><strong>Alerts to four podcasts</strong>, including:</em></p>
+
+                <ul>
+                  <li><p><strong>The Ankler Podcast</strong>, a weekly team breakdown out every Friday morning of Hollywood's big headlines</p></li>
+                  <li><p><strong>Martini Shot</strong>, short and funny stories by Rob Long about working in the entertainment business, out every Wednesday.</p></li>
+                  <li><p><strong>Prestige Junkie</strong>, analysis of awards races, plus interviews with top awards contenders, hosted by Katey Rich, out every Tuesday.&nbsp;</p></li>
+                  <li><p><strong>Art &amp; Crafts</strong>, examining the careers and contributions of the talented artisans who create TV and movies, out seasonally during awards seasons.&nbsp;</p></li>
+                </ul>
+
+                <p><em><strong>Paid subscribers also receive:&nbsp;</strong></em></p>
+
+                <ul>
+                  <li><p><strong>Podcast episode transcripts and the opportunity</strong> to ask our hosts questions, to be answered in future episodes.</p></li>
+                </ul>
+
+                <ul>
+                  <li><p><strong>Early invitations</strong> to exclusive live events and panels hosted by Ankler staff, featuring stars of your favorite television shows and movies, and the ability to watch recorded panels on demand at <a target="_blank" href="{{ $instance.metadata.home }}">AnklerEnjoy</a>, our multimedia home for industry happenings.</p></li>
+                  <li><p><strong>Early access to merch drops,</strong> and free merch for annual subscribers.</p></li>
+                </ul>
+
+                <p>If you can't find our newsletters, check your spam folder. And please mark this address as 'not spam.' If the newsletter isn't in your spam folder either, you should look in the Promotions tab.</p>
+
+                <p>We are excited to have you join us — please reach out with any thoughts, questions, comments and ideas at <a href="mailto:info@theankler.com">info@theankler.com</a>.&nbsp;</p>
+
+                <p>Warmly,</p>
+
+                <p><em><strong>Richard Rushfield &amp; Janice Min</strong></em></p>
+
+                <p>Ankler Media co-founders</p>
+
+                <p><strong>Private podcast setup:</strong><br>
+                To set up your podcast app, <a target="_blank" href="{{ session (member `/account/delivery`) }}">click this link</a> on your phone.</p>
+
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="email-footer-cell">
+                <p>© 2026 <span>Ankler Media</span><br>
+                10351 Santa Monica Blvd., Suite 430, Los Angeles, CA 90025<br>
+                <a target="_blank" href="{{ session (member `/account/delivery`) }}">Unsubscribe</a></p>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

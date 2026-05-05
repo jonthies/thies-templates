@@ -1,0 +1,38 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    A payment for your {{ $instance.title }} subscription failed.
+                </h4>
+                <h4>
+                    Please sign in and update your payment information.
+                </h4>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="button" href="{{ session (member `/account/`) }}">Sign In</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

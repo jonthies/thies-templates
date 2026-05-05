@@ -1,0 +1,109 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>{{ assetBody "claudepassword.css" }}</style>
+
+{{ $theme := theme }}
+{{ $instance := instance }}
+
+<div style="display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+  Sign in to {{ $instance.title }}
+</div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" class="outer-wrapper">
+  <tbody>
+    <tr>
+      <td align="center" class="outer-cell">
+
+        <table width="600" border="0" cellpadding="0" cellspacing="0" role="presentation" class="email-container">
+          <tbody>
+
+            {{/* Header / Logo */}}
+            <tr>
+              <td align="center" class="header-cell">
+                <a target="_blank" href="{{ $instance.metadata.home }}" class="header-link">
+                  {{ if $theme.banner }}
+                    <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}" class="header-logo">
+                  {{ else }}
+                    <span class="header-text">{{ $instance.title }}</span>
+                  {{ end }}
+                </a>
+              </td>
+            </tr>
+
+            {{/* Main content card */}}
+            <tr>
+              <td class="card-cell">
+
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tbody>
+
+                    {{/* Headline */}}
+                    <tr>
+                      <td class="heading-cell">
+                        Let's get you signed in
+                      </td>
+                    </tr>
+
+                    {{/* Sub-heading */}}
+                    <tr>
+                      <td class="subheading-cell">
+                        Sign in with the secure link below
+                      </td>
+                    </tr>
+
+                    {{/* CTA Button */}}
+                    <tr>
+                      <td align="center" class="button-cell">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td class="button-td">
+                                <a target="_blank" href="{{ shortURL .link }}" class="cta-button">Sign in to {{ $instance.title }}</a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+
+                    {{/* OTP Code (if present) */}}
+                    {{ if .code }}
+                    <tr>
+                      <td class="code-label-cell">
+                        Or use this one-time code:
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="code-cell">
+                        {{ .code }}
+                      </td>
+                    </tr>
+                    {{ end }}
+
+                    {{/* Fallback link */}}
+                    <tr>
+                      <td class="fallback-cell">
+                        You can also follow this <a target="_blank" href="{{ shortURL .link }}" class="inline-link">link</a> with your browser.
+                      </td>
+                    </tr>
+
+                    {{/* Disclaimer */}}
+                    <tr>
+                      <td class="disclaimer-cell">
+                        If you didn't request this email, you can safely ignore it.<br>
+                        If you're experiencing issues, please contact <a target="_blank" href="{{ $instance.metadata.home }}" class="inline-link">Support</a>.
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

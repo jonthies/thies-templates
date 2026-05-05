@@ -1,0 +1,25 @@
+{
+  "name": "Payment Failed Email",
+  "slug": "payment-failed-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Payment failed for your {{ .instance.title }} subscription.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "charge.failed",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

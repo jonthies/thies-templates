@@ -1,0 +1,15 @@
+{
+  "name": "Podcast Member",
+  "slug": "podcast-member",
+  "type": "article",
+  "channel": "podcast",
+  "title": "{{ .article.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Subscription Past Due Podcast",
+  "slug": "subscription-past-due-podcast",
+  "type": "admin",
+  "channel": "podcast",
+  "title": "Your Subscription to {{ .instance.title }} is Past Due.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.subscription.status.past_due",
+      "channel": "podcast",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{{ $instance := instance }}
+<style>
+  {{ assetBody "newsletter_simple.css"}}
+</style>
+
+<div
+  style="
+    display: none !important;
+    visibility: hidden;
+    mso-hide: all;
+    font-size: 1px;
+    line-height: 1px;
+    max-height: 0px;
+    max-width: 0px;
+    opacity: 0;
+    overflow: hidden;
+  "
+>
+  {{ .preheader }}
+</div>
+
+<table class="email-body-container" role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td></td>
+      <td class="content" width="550">
+        <!-- Post Header -->
+        <div class="post-header" role="region" aria-label="Post header" style="font-size: 16px; line-height: 26px;">
+          <h1 class="post-title" dir="auto" style="direction: auto; text-align: start; unicode-bidi: isolate;">
+            <a href="{{ token .article.uri }}" style="color: rgb(54,55,55); text-decoration: none;">
+              {{ .article.title }}
+            </a>
+          </h1>
+          {{ if .article.subtitle }}
+          <h3 class="subtitle" dir="auto" style="direction: auto; text-align: start; unicode-bidi: isolate;">
+            {{ .article.subtitle }}
+          </h3>
+          {{ end }}
+          
+          <!-- Post Meta -->
+          <table class="post-meta" role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 1em 0; height: 20px; align-items: center;">
+            <tbody>
+              <tr>
+                <td>
+                  <table role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align: middle;">
+                                  <div class="post-meta-item" style="list-style: none; font-size: 11px; line-height: 20px; text-decoration: unset; color: rgb(54,55,55); margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: .2px;">
+                                    {{ if .article.author }}
+                                    <span style="list-style: none; color: rgb(54,55,55); margin: 0; font-size: 11px; line-height: 20px; font-weight: 500; text-transform: uppercase; letter-spacing: .2px;">
+                                      {{ .article.author }}
+                                    </span>
+                                    {{ end }}
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align: middle;">
+                                  <div class="post-meta-item secondary" style="list-style: none; font-size: 11px; line-height: 20px; text-decoration: unset; color: rgb(119,119,119); margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: .2px;">
+                                    <time datetime="{{ .article.published_at }}">{{ timeFormat .article.published_at "MMM D" }}</time>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <!-- Action Buttons Top -->
+          <table class="email-ufi-2-top" role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 1px solid rgb(0,0,0,.1); border-bottom: 1px solid rgb(0,0,0,.1); min-width: 100%;">
+            <tbody>
+              <tr height="16">
+                <td height="16" style="font-size:0px; line-height:0;">&nbsp;</td>
+              </tr>
+              <tr>
+                <td>
+                  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align: middle;">
+                                  <table role="presentation" width="38" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center">
+                                          <a class="email-icon-button" href="{{ token .article.uri }}?action=like" style="display: inline-block; font-weight: 500; border: 1px solid rgb(0,0,0,.1); border-radius: 9999px; text-transform: uppercase; font-size: 12px; line-height: 1; padding: 9px 0; text-decoration: none; color: rgb(119,119,119); min-width: 38px; box-sizing: border-box; width: 38px">
+                                            <span style="font-size: 18px;">♥</span>
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                                <td width="8" style="min-width: 8px;"></td>
+                                <td style="vertical-align: middle;">
+                                  <table role="presentation" width="38" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center">
+                                          <a class="email-icon-button" href="{{ token .article.uri }}?action=comment" style="display: inline-block; font-weight: 500; border: 1px solid rgb(0,0,0,.1); border-radius: 9999px; text-transform: uppercase; font-size: 12px; line-height: 1; padding: 9px 0; text-decoration: none; color: rgb(119,119,119); min-width: 38px; box-sizing: border-box; width: 38px">
+                                            <span style="font-size: 18px;">💬</span>
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                                <td width="8" style="min-width: 8px;"></td>
+                                <td style="vertical-align: middle;">
+                                  <table role="presentation" width="38" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center">
+                                          <a class="email-icon-button" href="{{ token .article.uri }}?action=share" style="display: inline-block; font-weight: 500; border: 1px solid rgb(0,0,0,.1); border-radius: 9999px; text-transform: uppercase; font-size: 12px; line-height: 1; padding: 9px 0; text-decoration: none; color: rgb(119,119,119); min-width: 38px; box-sizing: border-box; width: 38px">
+                                            <span style="font-size: 18px;">↗</span>
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td align="right">
+                          <table role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0">
+                            <tbody>
+                              <tr>
+                                <td style="vertical-align: middle;">
+                                  <table role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center">
+                                          <a class="email-button-outline" href="{{ token .article.uri }}" style="display: inline-block; font-weight: 500; border: 1px solid rgb(0,0,0,.1); border-radius: 9999px; text-transform: uppercase; font-size: 12px; line-height: 12px; padding: 9px 14px; text-decoration: none; color: rgb(119,119,119);">
+                                            <span class="email-button-text" style="vertical-align: middle; margin-right: 4px">READ ON SITE</span>
+                                            <span style="vertical-align: middle;">→</span>
+                                          </a>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr height="16">
+                <td height="16" style="font-size:0px; line-height:0;">&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Article Body -->
+        <div class="post typography" dir="auto" style="font-size: 16px; line-height: 26px;">
+          <div class="article-body markup" dir="auto" style="text-align: initial; font-size: 16px; line-height: 26px; width: 100%; word-break: break-word; margin-bottom: 16px;">
+            {{ .article.body }}
+          </div>
+        </div>
+        
+        <!-- Action Buttons Bottom -->
+        <table class="email-ufi-2-bottom" role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top: 1px solid rgb(0,0,0,.1); border-bottom: 1px solid rgb(0,0,0,.1); min-width: 100%;">
+          <tbody>
+            <tr height="16">
+              <td height="16" style="font-size:0px; line-height:0;">&nbsp;</td>
+            </tr>
+            <tr>
+              <td>
+                <table class="email-ufi-2-row" role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom: 1px solid rgb(0,0,0,.1);">
+                  <tbody>
+                    <tr>
+                      <td width="95%">
+                        <table class="email-button-outline-wrapper-full-width" role="presentation" width="auto" border="0" cellspacing="0" cellpadding="0" style="width: 95%; margin: 0 auto;">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <a class="email-button-outline full-width" href="{{ token .article.uri }}?action=share" style="display: inline-block; font-weight: 500; border: 1px solid rgb(0,0,0,.1); border-radius: 9999px; text-transform: uppercase; font-size: 12px; line-height: 12px; padding: 9px 14px; text-decoration: none; color: rgb(119,119,119); width: 100%; padding-left: 0; padding-right: 0;">
+                                  <span class="email-button-text" style="vertical-align: middle;">Share</span>
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr height="16">
+                      <td height="16" style="font-size:0px; line-height:0;">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <!-- Footer -->
+        <div class="footer" style="color: rgb(119,119,119); text-align: center; font-size: 16px; line-height: 26px; padding: 24px 0;">
+          <div style="font-size: 16px; line-height: 26px; padding-bottom: 24px">
+            <p class="small" style="list-style: none; padding-bottom: 0; font-size: 12px; line-height: 16px; margin: 0; color: rgb(119,119,119); text-decoration: unset;">
+              © {{ timeFormat .article.published_at "YYYY" }} <span>{{ $instance.title }}</span><br>
+              123 Main Street, City, State 12345<br>
+              {{ $redirectURI := (member "/unsubscribe") }}
+              {{ $optout := (optOut $redirectURI) }}
+              <a href="{{ $optout }}" style="text-decoration: underline; color: rgb(119,119,119);">
+                <span style="color: rgb(119,119,119); text-decoration: underline;">Unsubscribe</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

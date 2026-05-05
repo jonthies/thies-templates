@@ -1,0 +1,25 @@
+{
+  "name": "Refund Email",
+  "slug": "refund-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your refund receipt from {{ .instance.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "charge.refunded",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

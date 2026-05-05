@@ -1,0 +1,25 @@
+{
+  "name": "Job Report Email",
+  "slug": "job-report-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "{{ .instance.title }} - {{ .report.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "job.completed",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

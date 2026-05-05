@@ -1,0 +1,25 @@
+{
+  "name": "Subscription Expires Soon Email",
+  "slug": "subscription-expires-soon-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your {{ .instance.title }} subscription will expire {{ timeFormat .subscription.ends_at `LL`}}.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.subscription.expiring",
+      "channel": "email",
+      "enabled": false,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

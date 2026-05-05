@@ -1,0 +1,29 @@
+<div></div>
+{{ .article.body }}
+<hr>
+[[ if .member.email ]]
+<hr>
+
+<p>Subscription Information</p>
+<p>
+    Member: [[ .member.name ]]<br>
+    Email: [[ .member.email ]]<br>
+    [[ if .subscription.created_at]]
+    [[ if .account.created_at ]]
+    Member since: [[timeFormat .account.created_at `LL`]]<br>
+    [[ else ]]
+    Member since: [[timeFormat .subscription.created_at `LL`]]<br>
+    [[ end ]]
+    [[if .subscription.canceled]]
+    Auto-renewal is disabled<br>
+    Expiration date: [[ timeFormat .subscription.ends_at `LL`]]<br>
+    [[else]]
+    Your subscription renews every [[ .subscription.recurring_interval ]]<br>
+    Renewal date: [[ timeFormat .subscription.ends_at `LL`]]<br>
+    [[end]]
+    [[ else if .account.corp ]]
+    Plan type: Corporate<br>
+    [[end]]
+</p>
+<p><a href="[[ member `/account`]]">Manage your account</a></p>
+[[ end ]]

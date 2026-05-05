@@ -1,0 +1,29 @@
+{
+  "name": "Subscription Renews Soon Email",
+  "slug": "subscription-renews-soon-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your {{ .instance.title }} subscription will renew soon.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "invoice.upcoming",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {
+        "rules": [
+          "any(lines.data, { .plan.interval==\"year\"})"
+        ]
+      }
+    }
+  ]
+}

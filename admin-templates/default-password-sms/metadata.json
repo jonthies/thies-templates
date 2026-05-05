@@ -1,0 +1,25 @@
+{
+  "name": "Default Password SMS",
+  "slug": "default-password-sms",
+  "type": "admin",
+  "channel": "sms",
+  "title": "",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.password.sms",
+      "channel": "sms",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

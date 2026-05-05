@@ -1,0 +1,13 @@
+{{ $instance := instance }}
+<div>
+    Hi [[ .member.name ]],
+</div>
+<div>
+    A your subscription to {{ $instance.title }} is now Past Due. This can happen if your subscription could not renew or a payment failed. 
+</div>
+<div>
+    Please sign in and update your payment information.
+</div>
+<div>
+    <a target="_blank" href="[[ session (member `/account`) ]]">Manage your account</a>.
+</div>

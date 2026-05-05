@@ -1,0 +1,25 @@
+{
+  "name": "Sender Email Verify",
+  "slug": "sender-email-verify",
+  "type": "admin",
+  "channel": "email",
+  "title": "Verify Sender Address",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "email.sender.verify",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Newsletter",
+  "slug": "newsletter",
+  "type": "article",
+  "channel": "email",
+  "title": "{{ .article.title }}",
+  "metadata": {
+    "subject": "{{ .article.title }} - NEWSLETTER",
+    "from_address": {
+      "address": "jon@jonthies.com",
+      "last_verified": "2025-07-30T14:42:57.885151-04:00",
+      "name": "JON THIES",
+      "verified": true
+    },
+    "reply_to": {
+      "address": "jon@jonthies.com",
+      "last_verified": "2025-07-30T14:42:57.885151-04:00",
+      "name": "JON THIES",
+      "verified": true
+    },
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

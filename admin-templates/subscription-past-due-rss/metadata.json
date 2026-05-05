@@ -1,0 +1,25 @@
+{
+  "name": "Subscription Past Due RSS",
+  "slug": "subscription-past-due-rss",
+  "type": "admin",
+  "channel": "rss",
+  "title": "Your Subscription to {{ .instance.title }} is Past Due.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.subscription.status.past_due",
+      "channel": "rss",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Payment Succeeded Email",
+  "slug": "payment-succeeded-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your receipt from {{ .instance.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "invoice.payment_succeeded",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

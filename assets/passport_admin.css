@@ -1,0 +1,153 @@
+:root {
+    --button-color: {{ .theme.email_theme.button_color }};
+    --button-text-color: {{ .theme.email_theme.button_text_color }};
+    --link-color: {{ .theme.email_theme.link_color }};
+    --blockquote-color: {{ .theme.email_theme.blockquote_color }};
+    --font-face: {{ .theme.email_theme.font_face }};
+    --background-color: {{ .theme.email_theme.background_color }};
+    --foreground-color: {{ .theme.email_theme.foreground_color }};
+}
+
+@import url('{{ .theme.email_theme.font_url }}');
+
+body, html {
+    margin-left:1%;
+    margin-right:0%;
+    margin-bottom:0;
+    margin-top:0;
+    width:99%;
+    padding: 0;
+    font-size: 100%;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    font-family: var(--font-face, Arial, sans-serif);
+}
+
+img {
+    outline: none;
+    text-decoration: none;
+    -ms-interpolation-mode: bicubic;
+    height: auto !important;
+    align-self: left !important;
+    float: left !important;
+    text-align: left;
+    display: block;
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--font-face, Arial, sans-serif); 
+    color: var(--foreground-color);
+}
+
+a img {
+    border: none;
+    align-self: left !important;
+    float: left !important;
+    height: auto !important;
+}
+
+a {
+    color: var(--link-color);
+    font-weight: bold;
+    font-family: var(--font-face, Arial, sans-serif);
+    text-decoration:none  
+}
+
+.button {
+    padding: 12px 18px 12px 18px; 
+    width: 160px;
+    border-radius:5px; 
+    background-color: var(--button-color, #a0a0a0);
+    font-size:18px;
+    font-family: var(--font-face, Arial, sans-serif);
+    color: var(--button-text-color) !important;
+    display: inline-block;
+    text-align: center;
+    text-decoration:none;
+}
+
+h1 {
+    color: var(--foreground-color);
+    font-size: 29px;
+    font-weight: bold;
+    margin-bottom: 0px !important;
+    text-decoration: none !important;
+    padding-bottom: 0px;
+    line-height: 125%;
+    font-family: var(--font-face, Arial, sans-serif);
+}
+
+h4 {
+    color: var(--foreground-color) !important;
+    font-family: var(--font-face, Arial, sans-serif);
+    font-size: 19px;
+    line-height: 125%;
+    font-weight: normal;
+    text-decoration: none !important;
+    margin-bottom: 0 !important;
+    margin-top: 32px !important;
+    padding-bottom: 2px;
+    padding-top: 0px;
+    display: block;
+    text-transform: none;
+}
+
+blockquote {
+    background-color: var(--blockquote-color);
+    color: var(--foreground-color);
+    font-family: var(--font-face, Arial, sans-serif);
+    margin: 1em 0;
+    padding: 1em;
+    border-left: 4px solid var(--button-color, #a0a0a0);
+}
+
+p {
+    color: var(--foreground-color);
+    font-family: var(--font-face, Arial, sans-serif);
+}
+
+@media only screen and (max-width:600px) {
+    table img {
+        width: 100%;
+        height: auto !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    p {
+        font-size: 18px !important;
+        max-width: 480px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    h4 {
+        font-size: 20px !important;
+    }
+    img {
+        max-width: 480px im !important;
+    }
+}
+
+.email-header {
+    display: block;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.email-header img {
+    max-width: 320px;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+.email-header-text {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--font-face, Arial, sans-serif);
+    color: var(--foreground-color);
+    margin: 0;
+    padding: 12px 0;
+    display: block;
+} 

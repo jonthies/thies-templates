@@ -1,0 +1,337 @@
+/* ==========================================================================
+   theankler_footer.css
+   Styles for the reusable _ankler_follow_us.gotmpl postscript block.
+   Requires newsletter.css (or theankler_admin.css) to be loaded first
+   for the CSS custom properties (--link-color, --button-color, etc.).
+   ========================================================================== */
+
+/* Separator bar above the postscript block */
+.ankler-footer-divider {
+    margin: 32px 0 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid var(--blockquote-color);
+    font-size: 16px;
+    line-height: 26px;
+}
+
+/* Outer wrapper */
+.ankler-footer {
+    margin: 32px 0;
+    font-size: 16px;
+    line-height: 26px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Wordmark logo container entres the image and suppresses global float */
+.ankler-footer-wordmark {
+    text-align: center;
+    margin-bottom: 0;
+    line-height: 0;
+}
+
+.ankler-footer-wordmark a {
+    display: inline-block;
+    font-weight: normal;
+    line-height: 0;
+    text-decoration: none;
+}
+
+.ankler-footer-wordmark img {
+    float: none !important;
+    display: block;
+    margin: 0 auto;
+    border: none !important;
+    height: auto !important;
+    width: auto;
+    width: 200px;
+}
+
+/* Bordered callout that wraps social links, gift button, and tip contacts */
+.ankler-footer-pullquote {
+    border-top: 1px solid var(--blockquote-color);
+    border-bottom: 1px solid var(--blockquote-color);
+    margin: 32px auto;
+    text-align: center;
+}
+
+/* Shared paragraph style inside the pullquote */
+.ankler-footer-pullquote p {
+    color: var(--foreground-color);
+    line-height: 26px;
+    font-size: 16px;
+    margin: 32px 0;
+    text-align: center;
+    font-weight: 500;
+    font-family: var(--font-face);
+}
+
+/* Social links row */
+.ankler-footer-social a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-family: var(--font-face);
+}
+
+
+.ankler-footer-social a:hover {
+    text-decoration: underline;
+}
+
+/* Gift subscription button */
+.ankler-footer-gift-btn {
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    font-family: Arial,sans-serif !important;
+    text-align: center;
+    cursor: pointer;
+    opacity: 1;
+    outline: none;
+    white-space: nowrap;
+    color: var(--button-text-color) !important;
+    text-decoration: none !important;
+    background-color: var(--button-color);
+    padding: 12px 20px;
+    height: auto;
+}
+
+.ankler-footer-gift-btn span {
+    color: var(--button-text-color);
+    text-decoration: none;
+}
+
+.ankler-footer-gift-btn:hover,
+.ankler-footer-gift-btn:hover span {
+    background-color: var(--button-color) !important;
+}
+
+/* Tip / advertise contact paragraph */
+.ankler-footer-contacts a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-family: var(--font-face);
+}
+
+.ankler-footer-contacts a:hover {
+    text-decoration: underline;
+}
+
+.footer-meta {
+  font-size: 12px !important;
+}
+/* Pull-quote / bordered callout block (used in postscript follow-us section) */
+.pullquote {
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    margin: 32px auto;
+    text-align: center;
+}
+
+.pullquote p {
+    text-align: center;
+    font-weight: 500;
+    margin: 32px 0;
+}
+
+.is-style-separator-thin {
+    border-top: 1px !important;
+    background-color: none !important;
+}
+
+
+.wp-block-separator:not(.is-style-dots) {
+    border-bottom: 1px solid #000;
+    height: 1px;
+}
+.wp-block-separator.has-custom-orange-color,
+.wp-block-separator.has-custom-orange-background-color {
+    border-bottom: 1px solid #ff490d;
+    height: 1px;
+}
+
+.wp-block-separator.is-style-dots {
+    border: none !important;
+    height: 5px !important;
+    width: 78px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background: radial-gradient(circle closest-side, #000 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-orange-color,
+.wp-block-separator.is-style-dots.has-custom-orange-background-color {
+    background: radial-gradient(circle closest-side, #ff490d 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+
+.has-text-align-center {
+    text-align: center;
+}
+
+.is-content-justification-center {
+    justify-content: center;
+    text-align: center;
+}
+
+.has-primary-color {
+    color: #690ffa !important;
+}
+
+.has-primary-background-color {
+    background-color: #690ffa !important;
+}
+
+.has-primary-alt-color {
+    color: #ffffff !important;
+}
+
+.has-primary-alt-background-color {
+    background-color: #ffffff !important;
+}
+
+/* Custom color classes for The Ankler */
+.has-custom-eggplant-color {
+    color: #463c55 !important;
+}
+.has-custom-eggplant-background-color {
+    background-color: #463c55 !important;
+}
+.has-custom-eggplant-border-color {
+    border-color: #463c55 !important;
+}
+
+.has-custom-olive-color {
+    color: #5f7d46 !important;
+}
+.has-custom-olive-background-color {
+    background-color: #5f7d46 !important;
+}
+.has-custom-olive-border-color {
+    border-color: #5f7d46 !important;
+}
+
+.has-custom-aqua-color {
+    color: #0fe6fa !important;
+}
+.has-custom-aqua-background-color {
+    background-color: #0fe6fa !important;
+}
+.has-custom-aqua-border-color {
+    border-color: #0fe6fa !important;
+}
+
+.has-custom-purple-color {
+    color: #be19d7 !important;
+}
+.has-custom-purple-background-color {
+    background-color: #be19d7 !important;
+}
+.has-custom-purple-border-color {
+    border-color: #be19d7 !important;
+}
+
+.has-custom-lilac-color {
+    color: #690ffa !important;
+}
+.has-custom-lilac-background-color {
+    background-color: #690ffa !important;
+}
+.has-custom-lilac-border-color {
+    border-color: #690ffa !important;
+}
+
+.has-custom-yellow-color {
+    color: #fafa0a !important;
+}
+.has-custom-yellow-background-color {
+    background-color: #fafa0a !important;
+}
+.has-custom-yellow-border-color {
+    border-color: #fafa0a !important;
+}
+
+.has-custom-red-color {
+    color: #da1921 !important;
+}
+.has-custom-red-background-color {
+    background-color: #da1921 !important;
+}
+.has-custom-red-border-color {
+    border-color: #da1921 !important;
+}
+
+.has-custom-orange-color {
+    color: #ff490d !important;
+}
+.has-custom-orange-background-color {
+    background-color: #ff490d !important;
+}
+.has-custom-orange-border-color {
+    border-color: #ff490d !important;
+}
+
+.has-background.has-global-padding > p:first-child {
+    margin-block-start: 0;
+}
+
+.has-small-font-size {
+    font-size: 0.95rem !important;
+}
+
+.has-medium-font-size {
+    font-size: 1.65rem !important;
+}
+
+.has-x-small-font-size {
+    font-size: 0.75rem !important;
+}
+
+.wp-element-button {
+    background-color: #ff490d !important;
+    color: #ffffff !important;
+    padding: 8px 12px;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    line-height: 20px !important;
+    font-weight: 600 !important;
+    font-family: Arial,sans-serif !important;
+}
+
+.has-custom-1-font-size {
+    font-size: 1.15rem !important;
+}
+
+.has-custom-2-font-size {
+    font-size: 2.25rem !important;
+}
+
+.has-primary-font-family {
+    font-family: "Arial", sans-serif !important;
+}
+ 
+.is-layout-flex {
+    margin-block-start: 1.5rem !important;
+}
+
+.has-border-color {
+    border-style: solid !important;
+}
+
+.wp-block-group > h1,
+.wp-block-group > h2,
+.wp-block-group > h3,
+.wp-block-group > h4,
+.wp-block-group > h5,
+.wp-block-group > h6,
+.wp-block-column > h1,
+.wp-block-column > h2,
+.wp-block-column > h3,
+.wp-block-column > h4,
+.wp-block-column > h5,
+.wp-block-column > h6 {
+    margin-block-start: 0 !important;
+}

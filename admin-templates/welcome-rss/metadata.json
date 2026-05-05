@@ -1,0 +1,25 @@
+{
+  "name": "Welcome RSS",
+  "slug": "welcome-rss",
+  "type": "admin",
+  "channel": "rss",
+  "title": "Welcome to {{ .instance.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.added",
+      "channel": "rss",
+      "enabled": false,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Refund SMS",
+  "slug": "refund-sms",
+  "type": "admin",
+  "channel": "sms",
+  "title": "",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "charge.refunded",
+      "channel": "sms",
+      "enabled": false,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

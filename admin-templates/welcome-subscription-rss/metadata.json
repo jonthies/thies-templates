@@ -1,0 +1,37 @@
+{
+  "name": "Welcome Subscription RSS",
+  "slug": "welcome-subscription-rss",
+  "type": "admin",
+  "channel": "rss",
+  "title": "Thank you for your subscription to {{ .instance.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.subscription.status.trialing",
+      "channel": "rss",
+      "enabled": false,
+      "admin": false,
+      "filter": {}
+    },
+    {
+      "event_source": "atomic",
+      "event_type": "user.subscription.status.active",
+      "channel": "rss",
+      "enabled": false,
+      "admin": false,
+      "filter": {
+        "rules": [
+          "prev_status==\"incomplete\""
+        ]
+      }
+    }
+  ]
+}

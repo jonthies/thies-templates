@@ -1,0 +1,46 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; !important; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Thank you for joining {{ $instance.title }}. Please verify your email:
+                </h4>
+                <br>
+            </td>
+        </tr>
+        <!--{{ with $verifyURI := (printf "%s/oauth/verify?access_token=%s" (publicURL) .token ) }} -->
+        <tr>
+            <td>
+                <a target="_blank" href="{{ $verifyURI }}" class="button">
+                    <span>Verify</span>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>
+                    OR You can also follow this <a target="_blank" href="{{ $verifyURI }}">link</a> with your browser.
+                </h4>
+            </td>
+        </tr>
+        <!--{{ end }} -->
+    </tbody>
+</table>

@@ -1,0 +1,48 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Your subscription to {{ $instance.title }} has been canceled or expired.
+                </h4>
+                <h4>
+                    To resubscribe please sign in.
+                </h4>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a target="_blank" href="{{ session (member `/account`) }}" class="button">
+                    <span>Sign In</span>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+                <!--{{ with $redirectURI := (printf "%s/member/unsubscribe" $instance.public_url ) }} -->
+                To unsubscribe from all email communication <a target="_blank" href="{{optOut $redirectURI}}">click here</a>.<br>
+                <!--{{ end }} -->
+            </td>
+        </tr>
+    </tbody>
+</table>

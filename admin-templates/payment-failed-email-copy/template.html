@@ -1,0 +1,33 @@
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td>
+                <a target="_blank" href="{{ .instance.metadata.theme.home}}">
+                    <img src="{{ .instance.metadata.theme.banner }}" border="0" alt="{{ .instance.title }}" width="320px">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    A payment for your {{ .instance.title }} subscription requires validation.
+                </h4>
+ <h4>
+                    Soon after your payment has been verified, your subscription will become active.
+                </h4>
+                {{ if .stripe.next_action.verify_with_microdeposits.hosted_verification_url }}
+                <br>
+                <a class="button" href="{{ .stripe.next_action.verify_with_microdeposits.hosted_verification_url }}">Verify Payment</a>
+                {{ else }}
+                <h4>Your bank or card company has contacted you for verification.</h4>
+                {{ end }}
+                <br>
+            </td>
+        </tr>
+    </tbody>
+</table>

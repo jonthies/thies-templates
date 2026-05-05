@@ -1,0 +1,11 @@
+{
+  "article": {
+    "title": "Sample Article Title",
+    "summary": "A short summary of the article used for preview.",
+    "uri": "https://example.com/articles/sample",
+    "author": "Jane Doe",
+    "published_at": "2026-05-05T17:53:45.160Z",
+    "image_uri": ""
+  },
+  "preheader": "A short summary of the article used for preview."
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Token Revoke Email",
+  "slug": "token-revoke-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "One of your tokens for {{ .instance.title }} has been revoked.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.token.revoked",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

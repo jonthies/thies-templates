@@ -1,0 +1,15 @@
+{
+  "name": "Team Invite Email",
+  "slug": "team-invite-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "You have been invited to a {{ .instance.title }} team subscription.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

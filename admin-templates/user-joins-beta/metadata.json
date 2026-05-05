@@ -1,0 +1,29 @@
+{
+  "name": "User Joins Beta",
+  "slug": "user-joins-beta",
+  "type": "admin",
+  "channel": "email",
+  "title": "You have joined the beta!",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.profile.updated",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {
+        "rules": [
+          "any(event_filter, { .profile.beta_enabled==true})"
+        ]
+      }
+    }
+  ]
+}

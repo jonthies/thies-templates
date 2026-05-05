@@ -1,0 +1,25 @@
+{
+  "name": "Welcome Email",
+  "slug": "welcome-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Welcome to {{ .instance.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.email.verified",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

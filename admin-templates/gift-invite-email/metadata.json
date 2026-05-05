@@ -1,0 +1,15 @@
+{
+  "name": "Gift Invite Email",
+  "slug": "gift-invite-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "You have been given a subscription to {{ .instance.title }}.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

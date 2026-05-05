@@ -1,0 +1,159 @@
+<div style="display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+  {{ .preheader }}
+</div>
+
+{{ $theme    := theme    }}
+{{ $instance := instance }}
+{{ $article  := article  }}
+{{ $user     := user     }}
+
+<!-- Outer page background wrapper -->
+<table class="email-outer-wrapper" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+  <tbody>
+    <tr>
+      <td id="main-cell">&nbsp;</td>
+      <td align="center" class="email-centering-cell">
+
+        <!-- Inner content column -->
+        <table class="email-container" width="670" border="0" cellpadding="0" cellspacing="0" role="presentation">
+          <tbody>
+
+            <!-- ===================== HEADER CARD ===================== -->
+            <tr>
+              <td class="card pcard header-container">
+
+                <!-- Header links row: date left, view-in-browser right -->
+                <table class="header-links-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tbody>
+                    <tr>
+                      <td class="column-left">{{ timeFormat $article.published_at "MMMM D, YYYY" }}</td>
+                      <td class="column-right">
+                        <a class="header-link" href="{{ token $article.uri }}">View Online</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- Logo -->
+                <table class="nl-logo-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tbody>
+                    <tr>
+                      <td class="logo">
+                        {{ if $theme.banner }}
+                        <a target="_blank" href="{{ $instance.metadata.home }}">
+                          <img src="{{ $theme.banner }}" alt="{{ $instance.title }}" width="670" class="header-logo-img img-responsive">
+                        </a>
+                        {{ else }}
+                        <a target="_blank" href="{{ $instance.metadata.home }}" class="publication-name-link">
+                          {{ $instance.title }}
+                        </a>
+                        {{ end }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- Article hero image (if present) -->
+                {{ if $article.image_uri }}
+                <div class="header-image-container">
+                  <a href="{{ token $article.uri }}">
+                    <img src="{{ $article.image_uri }}" alt="{{ $article.title }}" width="670" class="img-responsive">
+                  </a>
+                </div>
+                {{ end }}
+
+                <!-- Top blurb / article intro -->
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tbody>
+                    <tr>
+                      <td class="top-blurb-container">
+                        <h1 class="article-title">
+                          <a href="{{ token $article.uri }}">{{ $article.title }}</a>
+                        </h1>
+                        <span class="date">{{ timeFormat $article.published_at "dddd, LL" }}</span>
+                        <span class="date"> &nbsp;|&nbsp; By: {{ $article.author }}</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </td>
+            </tr>
+
+            <!-- ===================== ARTICLE BODY CARD ===================== -->
+            <tr>
+              <td class="card story-card">
+                <table class="story-content-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tbody>
+                    <tr>
+                      <td class="story-content content-container article">
+                        {{ $article.body }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ===================== FOOTER ===================== -->
+            <tr>
+              <td class="footer-outer">
+
+                <!-- Footer top: subscription info -->
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                  <tbody>
+                    <tr>
+                      <td class="footer-top">
+                        <span class="si">Subscription Information<br><br></span>
+                        <span class="subscriber">
+                          {{ if $user.profile.email }}
+                          Member: {{ $user.profile.name }}<br>
+                          Email: <a href="mailto:{{ $user.profile.email }}">{{ $user.profile.email }}</a><br>
+                          {{ if .subscription.created_at }}
+                          Member since: {{ timeFormat .subscription.created_at "LL" }}<br>
+                          {{ if .subscription.canceled }}
+                          Auto-renewal is disabled<br>
+                          Expiration date: {{ timeFormat .subscription.ends_at "LL" }}<br>
+                          {{ else }}
+                          Your subscription renews every {{ .subscription.recurring_interval }}<br>
+                          Renewal date: {{ timeFormat .subscription.ends_at "LL" }}<br>
+                          {{ end }}
+                          {{ end }}
+                          {{ end }}
+                          <br>
+                          You are receiving this email because you are subscribed to
+                          <a target="_blank" href="{{ $instance.metadata.home }}">{{ $instance.title }}</a>.<br><br>
+                          <a target="_blank" href="{{ session (member `/account`) }}">Click here</a> to view your account and manage your subscriptions.<br>
+                          {{ with $redirectURI := (member "/unsubscribe") }}
+                          {{  $optout := (urlencode (optOut $redirectURI)) }}
+                          {{  $unsubscribe := (member (print "/unsubscribe?unsub=" $optout)) }}
+                          <a target="_blank" href="{{ $unsubscribe }}">Click here</a> to unsubscribe.<br>
+                          {{ end }}
+                        </span>
+                      </td>
+                    </tr>
+
+                    <!-- Footer bottom: links row -->
+                    <tr>
+                      <td class="footer-bottom">
+                        <br>
+                        Copyright &copy; {{ timeFormat $article.published_at "YYYY" }}
+                        <a href="{{ $instance.metadata.home }}">{{ $instance.title }}</a>.
+                        All rights reserved.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <!-- /email-container -->
+
+      </td>
+      <td id="main-cell">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>

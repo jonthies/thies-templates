@@ -1,0 +1,24 @@
+{
+  "name": "Newsletter SP",
+  "slug": "newsletter-sp",
+  "type": "article",
+  "channel": "email",
+  "title": "",
+  "metadata": {
+    "subject": "{{ .article.title }}",
+    "from_address": {
+      "address": "jon@modelrocket.io",
+      "name": "jon thies MR"
+    },
+    "reply_to": {
+      "address": "jon@modelrocket.io",
+      "name": "jon thies MR"
+    },
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": [
+      "97XtQ4RZvjioUWxiegLbJw",
+      "ETQvUnxCbmpGzAyQDyArr4"
+    ]
+  }
+}

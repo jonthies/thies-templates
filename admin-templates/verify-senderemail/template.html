@@ -1,0 +1,52 @@
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; !important; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ .instance.metadata.theme.home}}">
+                    {{ if .instance.metadata.theme.banner }}
+                        <img src="{{ .instance.metadata.theme.banner }}" border="0" alt="{{ .instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ .instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Passport is requesting permission to send email using this address: {{ .email.address }} 
+                </h4>
+                <h4>
+                    To confirm that you owen this email address, please click the button below.
+                </h4>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a target="_blank" href="{{ .link }}" class="button">
+                    <span>Verify Email</span>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>
+                    Alternatively, you can copy and paste the following link into your browser: <a target="_blank" href="{{ .link }}">Verify Email Link</a>
+                </h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>
+                    Once verified, this email address will be used as a sender address for communications sent through Passport.
+                </h4>
+            </td>
+        </tr>
+    </tbody>
+</table>

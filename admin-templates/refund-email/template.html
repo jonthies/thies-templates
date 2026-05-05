@@ -1,0 +1,37 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Your {{ $instance.title }} refund for {{ currency .stripe.charge.AmountRefunded }} has been processed.
+                </h4>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="button" target="_blank" href="{{ .stripe.charge.ReceiptURL }}">
+                    <span>Download Receipt</span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

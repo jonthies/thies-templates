@@ -1,0 +1,25 @@
+{
+  "name": "Subscription Expired Email",
+  "slug": "subscription-expired-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your {{ .instance.title }} subscription has expired.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "customer.subscription.deleted",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

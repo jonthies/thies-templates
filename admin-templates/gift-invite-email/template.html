@@ -1,0 +1,45 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+         <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .invite.to.name }},
+                </h4>
+                <h4>
+                    You have been given a {{ currency .credit.amount }} gift subscription to {{ $instance.title }} from {{ .credit.owner_email.name }} ({{.credit.owner_email.address}}). Here is a note from your gift-giver:
+                </h4>
+                <hr>
+                <h4>
+                    {{ .invite.message }}
+                </h4>
+                <hr>
+                <h4>To redeem your gift, set your email delivery preferences, and add podcasts to your favortie player please click this link:</h4>
+                <br>
+                <!--{{ with $redeemURI := (printf "/redeem/%s?email=%s&name=%s" .invite.invite_code (urlencode .invite.to.address) (urlencode .invite.to.name )) }} -->
+
+                <a class="button" target="_blank" href="{{ member $redeemURI }}">
+                    <span>Redeem Gift</span>
+                </a>
+                <h4>If you want to continue your subscription past your gift period, please add a credit card and enable auto-renew.</h4>
+                <h4>Welcome!</h4>
+                <!-- {{ end }} -->
+                <br>
+            </td>
+        </tr>
+    </tbody>
+</table>

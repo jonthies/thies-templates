@@ -1,0 +1,15 @@
+{
+  "name": "Newsletter Simple",
+  "slug": "newsletter-simple",
+  "type": "article",
+  "channel": "email",
+  "title": "{{ .article.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

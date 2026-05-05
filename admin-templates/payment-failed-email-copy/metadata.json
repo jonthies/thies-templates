@@ -1,0 +1,33 @@
+{
+  "name": "Payment Requires Attention",
+  "slug": "payment-failed-email-copy",
+  "type": "admin",
+  "channel": "email",
+  "title": "Payment Requires Attention - please validate your payment",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "payment_intent.requires_action",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    },
+    {
+      "event_source": "stripe",
+      "event_type": "setup_intent.requires_action",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

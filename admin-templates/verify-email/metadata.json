@@ -1,0 +1,33 @@
+{
+  "name": "Verify Email",
+  "slug": "verify-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "{{ .instance.title }} - Please verify your email address.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.signup.email",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    },
+    {
+      "event_source": "atomic",
+      "event_type": "user.email.verify",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

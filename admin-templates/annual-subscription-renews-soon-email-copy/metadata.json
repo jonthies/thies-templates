@@ -1,0 +1,29 @@
+{
+  "name": "Annual Subscription Renews Soon Email ",
+  "slug": "annual-subscription-renews-soon-email-copy",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your Annual Subscription Renews Soon",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "stripe",
+      "event_type": "invoice.upcoming",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {
+        "rules": [
+          "any(lines.data, { .plan.interval==\"year\"})"
+        ]
+      }
+    }
+  ]
+}

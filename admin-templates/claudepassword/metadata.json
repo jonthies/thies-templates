@@ -1,0 +1,15 @@
+{
+  "name": "claudepassword",
+  "slug": "claudepassword",
+  "type": "admin",
+  "channel": "email",
+  "title": "claudepassword",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

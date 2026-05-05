@@ -1,0 +1,40 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }}
+                </h4>
+                <h4>
+                    One of your feed tokens for {{ $instance.title }} was recently revoked. Your podcast and RSS players may need to be updated with a new feed URL.
+                </h4>
+                <h4>
+                    Please sign in to receive your new feed URLs.
+                </h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <a target="_blank" href="{{ session (member `/account/delivery`) }}" class="button">
+                    <span>Sign In</span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

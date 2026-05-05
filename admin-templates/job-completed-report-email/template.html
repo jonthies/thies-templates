@@ -1,0 +1,319 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        {{ $report := jobState .body.id }}
+
+        :root {
+            --bg: #f6f7f9;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --border: #e6e8eb;
+            --border-soft: #eef0f3;
+            --header-bg: #f8fafc;
+            --note-bg: #f5f9ff;
+            --note-border: #3b82f6;
+            --link: #1b66c9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.55;
+            color: var(--text);
+            margin: 0;
+            padding: 24px 12px;
+            background-color: var(--bg);
+        }
+
+        /* WIDER on desktop */
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .report-container {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 0 auto;
+            box-shadow: 0 1px 2px rgba(16,24,40,0.06);
+        }
+
+        /* Top banner */
+        .top-banner {
+            display: block;
+            background: var(--header-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 18px;
+        }
+        .top-banner__eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 4px;
+        }
+        .top-banner__title {
+            font-size: 13px;
+            line-height: 1.45;
+            color: var(--text);
+            margin: 0;
+        }
+        .top-banner__right {
+            margin-top: 10px;
+        }
+        .top-banner__link {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--link);
+        }
+        .top-banner__link:hover {
+            text-decoration: underline;
+        }
+
+        .report-header {
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .report-title {
+            font-size: 24px;
+            font-weight: 750;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin: 0 0 8px 0;
+        }
+
+        .report-description {
+            font-size: 14px;
+            color: var(--muted);
+            margin: 0 0 10px 0;
+            max-width: 72ch;
+        }
+
+        .report-date {
+            font-size: 12px;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .section {
+            margin: 22px 0;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 750;
+            color: var(--text);
+            margin: 0 0 6px 0;
+            letter-spacing: -0.01em;
+        }
+
+        .section-description {
+            font-size: 13px;
+            color: var(--muted);
+            margin: 0 0 12px 0;
+            max-width: 90ch;
+        }
+
+        .note-section {
+            background-color: var(--note-bg);
+            border: 1px solid #dbeafe;
+            border-left: 4px solid var(--note-border);
+            padding: 14px 16px;
+            margin: 0;
+            border-radius: 10px;
+        }
+
+        .note-title {
+            font-size: 14px;
+            font-weight: 750;
+            color: var(--text);
+            margin: 0 0 6px 0;
+        }
+
+        .note-body {
+            font-size: 13px;
+            color: #374151;
+            margin: 0;
+        }
+
+        /* Don't force scroll on desktop */
+        .table-section {
+            overflow-x: visible;
+            margin: 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+        }
+        @media (max-width: 900px) {
+            .table-section { overflow-x: auto; }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            table-layout: auto; /* key */
+        }
+
+        thead {
+            background-color: var(--header-bg);
+        }
+
+        th {
+            padding: 11px 12px;
+            text-align: left;
+            font-weight: 750;
+            font-size: 12px;
+            color: #111827;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 11px 12px;
+            font-size: 13px;
+            color: #111827;
+            border-bottom: 1px solid var(--border-soft);
+            vertical-align: top;
+        }
+
+        tbody tr:nth-child(even) td {
+            background-color: #fbfcfe;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Make the last column (often Action) stay readable */
+        th:last-child,
+        td:last-child {
+            white-space: nowrap;
+            width: 1%;
+        }
+        td:last-child a {
+            display: inline-block;
+        }
+
+        .empty {
+            color: var(--muted);
+            padding: 14px 12px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 16px 10px; }
+            .report-container { padding: 18px; }
+            .report-title { font-size: 20px; }
+        }
+    </style>
+
+
+    <div class="page">
+        <div class="report-container">
+
+            {{ $inst := instance }}
+
+            <div class="top-banner">
+                <div class="top-banner__eyebrow">Passport Report</div>
+                <p class="top-banner__title">
+                    This is a report from your Passport instance <strong>{{ $inst.name }}</strong>
+                </p>
+                <div class="top-banner__right">
+                    <a class="top-banner__link" href="{{ publicURL `/admin/jobs/` .body.id }}">
+                    View this job in your admin console →
+                    </a>
+                </div>
+            </div>
+
+            <div class="report-header">
+                <h1 class="report-title">{{ $report.name }}</h1>
+                {{ if $report.description }}
+                <p class="report-description">{{ $report.description }}</p>
+                {{ end }}
+                {{ if $report.date }}
+                <p class="report-date">Generated: {{ $report.date }}</p>
+                {{ end }}
+            </div>
+
+            {{ range $section := $report.sections }}
+                {{ if eq .type "note" }}
+                <div class="section">
+                    <div class="note-section">
+                        {{ if .title }}
+                        <h3 class="note-title">{{ .title }}</h3>
+                        {{ end }}
+                        {{ if .body }}
+                        <p class="note-body">{{ .body }}</p>
+                        {{ end }}
+                    </div>
+                </div>
+
+                {{ else if eq .type "table" }}
+                <div class="section">
+                    {{ if .title }}
+                    <h2 class="section-title">{{ .title }}</h2>
+                    {{ end }}
+                    {{ if .description }}
+                    <p class="section-description">{{ .description }}</p>
+                    {{ end }}
+
+                    {{ if .columns }}
+                    <div class="table-section">
+                        {{ if eq (len .rows) 0 }}
+                            <div class="empty">No updates</div>
+                        {{ else }}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <!-- {{ range $section.columns }} -->
+                                    <th>{{ . }}</th>
+                                    <!-- {{ end }} -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--<!-- {{ range .rows }} -->
+                                <tr>
+                                    <!-- {{ range .cells }} -->
+                                    <td>
+                                        <!-- {{- if (isMap .) -}} -->
+                                            <!-- {{- if and (hasKey . "Text") (hasKey . "Link") -}} -->
+                                                <a href="{{ .Link }}">{{ .Text }}</a>
+                                            <!-- {{- else -}} -->
+                                                {{ . }}
+                                            <!-- {{- end -}} -->
+                                        <!-- {{- else -}} -->
+                                            {{ . }}
+                                        <!-- {{- end -}} -->
+                                    </td>
+                                    <!-- {{- else -}} -->
+                                    <td><em style="color:#6b7280;">—</em></td>
+                                    <!-- {{ end }} -->
+                                </tr>
+                                <!-- {{ end }} -->
+                            </tbody>
+                        </table>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+            {{ end }}
+
+        </div>
+    </div>

@@ -1,0 +1,25 @@
+{
+  "name": "Password Email",
+  "slug": "password-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "{{ .code }} is your {{ .instance.title }} access code.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.password.email",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

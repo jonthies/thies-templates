@@ -1,0 +1,96 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Thank you for your payment.
+                </h4>
+                <h4>
+                    Receipt from {{ $instance.title }} on {{ timeFormat .timestamp "LL" }}.
+                </h4>
+                <br>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+        </tr>
+        <!-- {{ range $item := .stripe.invoice.Lines.Data }} -->
+        <tr>
+            <td style="padding-left: 12px;">{{ $item.Description }}</td>
+            <td>{{ currency $item.Amount }} </td>
+        </tr>
+        <!-- {{end }} -->
+        <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
+        <!-- {{ if .stripe.invoice.Discount.Coupon.PercentOff }} -->
+        <!-- {{ $discountPer := .stripe.invoice.Discount.Coupon.PercentOff }} -->
+        <tr>
+            <td style="padding-left: 12px;">Team Discount ( {{ $discountPer }}% )</td>
+            <td>-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }} </td>
+        </tr>
+        <!-- {{ else }} -->
+        <tr>
+            <td style="padding-left: 12px;">Discount ( Grandfathered Price )</td>
+            <td>-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }} </td>
+        </tr>
+        <!-- {{ end }} -->
+        <!-- {{ end }} -->
+        <tr>
+            <td colspan="2">
+                <hr>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Total</b></td>
+            <td><b>{{ currency .stripe.invoice.Total }}</b></td>
+        </tr>
+        <!-- {{ if (.stripe.invoice.StartingBalance ) }} -->
+        <tr>
+            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Applied balance</b></td>
+            <td><b>{{ currency (sub .stripe.invoice.StartingBalance .stripe.invoice.EndingBalance )}}</b></td>
+        </tr>
+        <!-- {{ end }} -->
+        <tr>
+            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Amount paid</b></td>
+            <td><b>{{ currency  .stripe.invoice.AmountPaid }}</b></td>
+        </tr>
+        <tr><td><br/></td></tr>
+        <tr>
+            <td>
+                <a target="_blank" href="{{ .stripe.invoice.HostedInvoiceURL }}" style="margin-right: 20px">
+                    <span>Download Receipt</span>
+                </a>
+                <span style="font-size: 12px">Receipt link valid for 30 days.</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+                <br/>
+                <a target="_blank" href="{{ session (member `/invoices`)}}" style="padding-top: 32px">
+                    <span>View All Invoices and Receipts</span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

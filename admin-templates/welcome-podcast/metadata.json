@@ -1,0 +1,25 @@
+{
+  "name": "Welcome Podcast",
+  "slug": "welcome-podcast",
+  "type": "admin",
+  "channel": "podcast",
+  "title": "Welcome to {{ .instance.title }}",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.added",
+      "channel": "podcast",
+      "enabled": false,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

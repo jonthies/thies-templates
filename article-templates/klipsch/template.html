@@ -1,0 +1,371 @@
+<div style="display: none !important; visibility: hidden; mso-hide: all; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+  {{ .preheader }}
+</div>
+
+{{ $theme    := theme    }}
+{{ $instance := instance }}
+{{ $article  := article  }}
+{{ $user     := user     }}
+
+<div class="root-container" id="bodyTable">
+<div class="root-container-spacing">
+
+<!-- ==================== SECTION 1: View in Browser + Logo ==================== -->
+<table class="kl-section" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+  <tbody>
+    <tr>
+      <td align="center">
+        <table class="email-container" width="600" border="0" cellpadding="0" cellspacing="0" role="presentation">
+          <tbody>
+            <tr>
+              <td>
+                <div class="content-padding kl-first">
+                  <div class="kl-row colstack">
+                    <div class="kl-column">
+
+                      <!-- View in browser -->
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td class="mob-no-spc">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-text">
+                                        <div>
+                                          <div><span><a href="{{ token $article.uri }}">View in browser</a></span></div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <!-- Logo / Banner -->
+                      {{ if $theme.banner }}
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-image">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                          <tbody>
+                                            <tr>
+                                              <td class="kl-img-base-auto-width">
+                                                <a class="kl-img-link" href="{{ $instance.metadata.home }}">
+                                                  <img alt="{{ $instance.title }}" src="{{ $theme.banner }}" width="600">
+                                                </a>
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      {{ end }}
+
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== SECTION 2: Article Content ==================== -->
+<table class="kl-section" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+  <tbody>
+    <tr>
+      <td align="center">
+        <table class="email-container" width="600" border="0" cellpadding="0" cellspacing="0" role="presentation">
+          <tbody>
+            <tr>
+              <td>
+                <div class="content-padding">
+                  <div class="kl-row colstack">
+                    <div class="kl-column">
+
+                      <!-- Article hero image -->
+                      {{ if $article.image_uri }}
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-image">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                          <tbody>
+                                            <tr>
+                                              <td>
+                                                <a class="kl-img-link" href="{{ token $article.uri }}">
+                                                  <img alt="{{ $article.title }}" src="{{ $article.image_uri }}" width="600">
+                                                </a>
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      {{ end }}
+
+                      <!-- Article title, date, author -->
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td class="mob-no-spc">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-text">
+                                        <div>
+                                          <div><a href="{{ token $article.uri }}"><h1>{{ $article.title }}</h1></a></div>
+                                          <div><span class="date">{{ timeFormat $article.published_at "dddd, LL" }}</span></div>
+                                          <div><span class="date">By: {{ $article.author }}</span></div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <!-- CTA button (pre-order / read more) -->
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-button">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                          <tbody>
+                                            <tr>
+                                              <td>
+                                                <a href="{{ token $article.uri }}">READ MORE</a>
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <!-- Article body -->
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-text article">{{ $article.body }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ==================== SECTION 3: Footer ==================== -->
+<table class="kl-section" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+  <tbody>
+    <tr>
+      <td align="center">
+        <table class="email-container" width="600" border="0" cellpadding="0" cellspacing="0" role="presentation">
+          <tbody>
+            <tr>
+              <td>
+                <div class="content-padding kl-last">
+                  <div class="kl-row colstack">
+                    <div class="kl-column">
+
+                      <!-- Subscription info -->
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-text footer-text">
+                                        <div>
+                                          <p><span class="si">Subscription Information</span></p>
+                                          <p>
+                                            {{ if $user.profile.email }}
+                                            Member: {{ $user.profile.name }}<br>
+                                            Email: <a href="mailto:{{ $user.profile.email }}">{{ $user.profile.email }}</a><br>
+                                            {{ if .subscription.created_at }}
+                                            Member since: {{ timeFormat .subscription.created_at "LL" }}<br>
+                                            {{ if .subscription.canceled }}
+                                            Auto-renewal is disabled<br>
+                                            Expiration date: {{ timeFormat .subscription.ends_at "LL" }}<br>
+                                            {{ else }}
+                                            Your subscription renews every {{ .subscription.recurring_interval }}<br>
+                                            Renewal date: {{ timeFormat .subscription.ends_at "LL" }}<br>
+                                            {{ end }}
+                                            {{ end }}
+                                            {{ end }}
+                                          </p>
+                                          <p>
+                                            You are receiving this email because you are subscribed to
+                                            <a href="{{ $instance.metadata.home }}">{{ $instance.title }}</a>.
+                                          </p>
+                                          <p>
+                                            <a href="{{ session (member "/account") }}">Click here</a> to view your account and manage your subscriptions.
+                                          </p>
+                                          <p>
+                                            {{ with $redirectURI := (member "/unsubscribe") }}
+                                            {{  $optout := (urlencode (optOut $redirectURI)) }}
+                                            {{  $unsubscribe := (member (print "/unsubscribe?unsub=" $optout)) }}
+                                            <a href="{{ $unsubscribe }}">Click here</a> to unsubscribe.
+                                            {{ end }}
+                                          </p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <!-- Footer bottom: copyright + links -->
+                  <div class="kl-row colstack footer-bottom-row">
+                    <div class="kl-column footer-col-left">
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-text footer-text">
+                                        <div>
+                                          <p><span>© {{ timeFormat $article.published_at "YYYY" }} <a href="{{ $instance.metadata.home }}">{{ $instance.title }}</a></span></p>
+                                          <p><span>This email was sent to:
+                                            {{ if $user.profile.email }}
+                                            <a href="mailto:{{ $user.profile.email }}">{{ $user.profile.email }}</a>
+                                            {{ end }}
+                                          </span></p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    <div class="kl-column footer-col-right">
+                      <div class="mj-column-per-100 component-wrapper">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                  <tbody>
+                                    <tr>
+                                      <td class="kl-text footer-text">
+                                        <div>
+                                          <p>
+                                            {{ with $redirectURI := (member "/unsubscribe") }}
+                                            {{  $optout := (urlencode (optOut $redirectURI)) }}
+                                            {{  $unsubscribe := (member (print "/unsubscribe?unsub=" $optout)) }}
+                                            <a href="{{ $unsubscribe }}">Unsubscribe</a> |
+                                            {{ end }}
+                                            <a href="{{ session (member "/account") }}">Manage Preferences</a>
+                                          </p>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div><!-- end root-container-spacing -->
+</div><!-- end root-container -->
+
+<!-- iPhone Mail fix -->
+<div id="main-cell" style="display:none;"></div>

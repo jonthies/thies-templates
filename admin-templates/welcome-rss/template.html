@@ -1,0 +1,10 @@
+{{ $instance := instance }}
+<div>
+    Hi [[ .member.name ]],
+</div>
+<div>
+    Thank you for joining {{ $instance.title }}.
+</div>
+<div>
+    <a target="_blank" href="[[ session (member `/account/delivery`) ]]">Configure your email, podcast and RSS delivery preferences</a>.
+</div>

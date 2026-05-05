@@ -1,0 +1,25 @@
+{
+  "name": "Default Team Accepted Email",
+  "slug": "default-team-accepted-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "Your invitation to {{ .instance.title }} as been accepted.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "team.invite.redeemed",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

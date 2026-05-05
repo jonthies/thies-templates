@@ -1,0 +1,10 @@
+{{ $instance := instance }}
+<div>
+    Hi [[ .member.name ]],
+</div>
+<div>
+Your subscription to {{ $instance.title }} has been canceled or has expired.
+</div>
+<div>
+    <a target="_blank" href="[[ session (member `/account`) ]]">Manage your account</a>.
+</div>

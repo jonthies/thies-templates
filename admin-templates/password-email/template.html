@@ -1,0 +1,47 @@
+{{ $theme := theme }}
+{{ $instance := instance }}
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td class="email-header">
+                <a target="_blank" href="{{ $instance.metadata.home}}">
+                    {{ if $theme.banner }}
+                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                    {{ else }}
+                        <span class="email-header-text">{{ $instance.title }}</span>
+                    {{ end }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Here is your code for {{ $instance.title }}:
+                </h4>
+                <h1>{{ .code }}</h1>
+                <h4>
+                    Or, you can click here:<br><br>
+                </h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="button" target="_blank" href="{{ shortURL .link }}">
+                    <span>Sign In</span>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>
+                    <br>
+                    You can also follow this <a target="_blank" href="{{ shortURL .link }}">link</a> with your browser.
+                </h4>
+            </td>
+        </tr>
+    </tbody>
+</table>

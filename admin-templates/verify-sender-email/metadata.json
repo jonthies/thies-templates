@@ -1,0 +1,25 @@
+{
+  "name": "Verify Sender Email",
+  "slug": "verify-sender-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "{{ .instance.title }} - Passport is requesting permission to send from this address.",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "email.sender.verify",
+      "channel": "email",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

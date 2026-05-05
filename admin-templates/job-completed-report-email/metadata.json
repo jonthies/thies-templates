@@ -1,0 +1,35 @@
+{
+  "name": "Job Completed Report Email",
+  "slug": "job-completed-report-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "{{ .instance.title }} - Job Completed Report",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "job.completed",
+      "channel": "email",
+      "enabled": true,
+      "admin": true,
+      "settings": {
+        "email": {
+          "to_audience": "admin-users",
+          "channel": "email"
+        }
+      },
+      "filter": {
+        "rules": [
+          "type == \"stripe:subscription:sync\" || type == \"subscription:summary\" || type == \"distribution:summary\""
+        ]
+      }
+    }
+  ]
+}

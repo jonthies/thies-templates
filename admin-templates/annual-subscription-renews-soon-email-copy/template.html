@@ -1,0 +1,54 @@
+<style>{{ assetBody "passport_admin.css"}}</style>
+<table style="display: block; max-width: 600px !important; padding-top: 24px;">
+    <tbody>
+        <tr>
+            <td>
+                <a target="_blank" href="{{ .instance.metadata.theme.home}}">
+                    <img src="{{ .instance.metadata.theme.banner }}" border="0" alt="{{ .instance.title }}" width="320px">
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br>
+                <h4>
+                    Hi {{ .member.name }},
+                </h4>
+                <h4>
+                    Your ANNUAL subscription will renew on {{ timeFormat .subscription.ends_at "LL"}}.
+                </h4>
+                <br>
+                <table>
+                    <tbody>
+                        <!-- {{ range $item := .stripe.invoice.Lines.Data }} -->
+                        <tr>
+                            <td style="padding-left: 12px;">{{ $item.Description }}</td>
+                            <td>{{ currency $item.Amount }} </td>
+                        </tr>
+                        <!--	{{ end }} -->
+                        <tr>
+                            <td colspan="2">
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Total</b></td>
+                            <td><b>{{ currency .stripe.invoice.Total }}</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>
+                    To manage your subscription please sign in.
+                </h4>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a target="_blank" href="{{ session (member `/account`) }}" class="button">
+                    <span>Sign In</span>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

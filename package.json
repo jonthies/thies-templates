@@ -1,0 +1,23 @@
+{
+  "name": "passport-template-agent",
+  "version": "1.0.0",
+  "description": "GitOps tool for managing Passport/Atomic templates and CSS assets via a git repository",
+  "type": "module",
+  "scripts": {
+    "pull": "node src/pull.js",
+    "push": "node src/push.js",
+    "preview": "node src/preview.js",
+    "upgrade": "node src/upgrade.js"
+  },
+  "keywords": [
+    "passport",
+    "atomic",
+    "templates",
+    "gitops"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "open": "^10.0.0"
+  }
+}

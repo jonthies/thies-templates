@@ -1,0 +1,41 @@
+name: Sync Templates to Passport
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'article-templates/**'
+      - 'admin-templates/**'
+      - 'assets/**'
+
+# Shared with sync-from-passport.yml so push-to-Passport and pull-from-Passport
+# never run at the same time. cancel-in-progress=false means we wait, not skip.
+concurrency:
+  group: passport-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Push templates and assets to Passport
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Push templates and assets to Passport
+        run: node src/push.js 2>&1
+        env:
+          INSTANCE_HOST: ${{ secrets.INSTANCE_HOST }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}

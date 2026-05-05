@@ -1,0 +1,102 @@
+name: Sync Templates from Passport
+
+on:
+  schedule:
+    # Daily at 06:00 UTC. Adjust as needed.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+# Shared with sync.yml so a push-to-Passport and a pull-from-Passport never
+# run at the same time. cancel-in-progress=false means we wait, not skip.
+concurrency:
+  group: passport-sync
+  cancel-in-progress: false
+
+jobs:
+  pull-from-passport:
+    name: Pull from Passport and commit changes
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pull templates and assets from Passport
+        run: node src/pull.js
+        env:
+          INSTANCE_HOST: ${{ secrets.INSTANCE_HOST }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+      # Snapshot .sync-pending.json before push.js --only-pending deletes it,
+      # so we can use admin_modified_by emails in the commit message later.
+      - name: Snapshot pending list for commit message
+        if: hashFiles('.sync-pending.json') != ''
+        run: cp .sync-pending.json .sync-pending.bak.json
+
+      # If pull.js stripped admin_modified_at from any items, push the cleaned
+      # state back to Passport so the flag is cleared server-side. Otherwise
+      # the same items would re-trigger this workflow tomorrow.
+      - name: Push cleaned metadata back to Passport (if needed)
+        if: hashFiles('.sync-pending.json') != ''
+        run: node src/push.js --only-pending
+        env:
+          INSTANCE_HOST: ${{ secrets.INSTANCE_HOST }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+
+      - name: Commit and push changes
+        run: |
+          if [ -z "$(git status --porcelain article-templates admin-templates assets)" ]; then
+            echo "No changes to commit."
+            rm -f .sync-pending.bak.json
+            exit 0
+          fi
+
+          # Build a commit body grouped by admin_modified_by email when available.
+          BODY=$(node -e '
+            const fs = require("fs");
+            if (!fs.existsSync(".sync-pending.bak.json")) process.exit(0);
+            const data = JSON.parse(fs.readFileSync(".sync-pending.bak.json", "utf8"));
+            const groups = {};
+            for (const t of data.templates || []) {
+              const who = t.modified_by || "(unknown)";
+              (groups[who] ??= []).push(`${t.slug} (template)`);
+            }
+            for (const a of data.assets || []) {
+              const who = a.modified_by || "(unknown)";
+              (groups[who] ??= []).push(`${a.filename} (asset)`);
+            }
+            const lines = [];
+            for (const [who, items] of Object.entries(groups)) {
+              lines.push(`${who} modified:`);
+              for (const item of items) lines.push(`  - ${item}`);
+            }
+            process.stdout.write(lines.join("\n"));
+          ')
+          rm -f .sync-pending.bak.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add article-templates admin-templates assets
+          if [ -n "$BODY" ]; then
+            git commit -m "chore: sync from Passport" -m "$BODY"
+          else
+            git commit -m "chore: sync from Passport"
+          fi
+          git push origin main

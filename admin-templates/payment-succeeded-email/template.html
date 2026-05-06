@@ -44,10 +44,17 @@
         <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
         <!-- {{ if .stripe.invoice.Discount.Coupon.PercentOff }} -->
         <!-- {{ $discountPer := .stripe.invoice.Discount.Coupon.PercentOff }} -->
+        <!-- {{ if eq $discountPer 100 }} -->
+        <tr>
+            <td style="padding-left: 12px;">{{ .stripe.invoice.Discount.Coupon.Name }}</td>
+            <td></td>
+        </tr>
+        <!-- {{ else }} -->
         <tr>
             <td style="padding-left: 12px;">Team Discount ( {{ $discountPer }}% )</td>
             <td>-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }} </td>
         </tr>
+        <!-- {{ end }} -->
         <!-- {{ else }} -->
         <tr>
             <td style="padding-left: 12px;">Discount ( Grandfathered Price )</td>

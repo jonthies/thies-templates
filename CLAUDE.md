@@ -80,6 +80,7 @@ Be aware: `npm run pull` is a one-way mirror. If you have uncommitted local edit
 | `npm run push` | Push all local templates and assets → Passport (manual/testing only) |
 | `npm run push -- --slug <slug>` | Push a single template |
 | `npm run push -- --only-pending` | Push only items listed in `.sync-pending.json` (used by the daily sync workflow) |
+| `npm run push -- --changed-from <file>` | Push only items whose paths appear in `<file>` (used by `sync.yml` to push only what a commit touched) |
 | `npm run push -- --dry-run` | Preview what would change without writing |
 | `npm run preview -- --slug <slug> --open` | Render template and open in browser |
 | `npm run preview -- --slug <slug> --send-to <email>` | Render and send as email via Passport |

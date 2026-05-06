@@ -23,6 +23,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Need history so we can diff against ${{ github.event.before }} to
+          # determine which templates/assets actually changed in this push.
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -33,8 +37,29 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Compute changed paths
+        id: changes
+        run: |
+          BEFORE="${{ github.event.before }}"
+          ZERO="0000000000000000000000000000000000000000"
+          if [[ -z "$BEFORE" || "$BEFORE" == "$ZERO" ]]; then
+            # New branch / force push / unknown base — fall back to full push.
+            echo "full_push=true" >> "$GITHUB_OUTPUT"
+            echo "No before-SHA available; will run a full push."
+          else
+            git diff --name-only "$BEFORE" "${{ github.sha }}" > /tmp/changed.txt
+            echo "Changed paths in this push:"
+            cat /tmp/changed.txt
+            echo "full_push=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Push templates and assets to Passport
-        run: node src/push.js 2>&1
+        run: |
+          if [[ "${{ steps.changes.outputs.full_push }}" == "true" ]]; then
+            node src/push.js 2>&1
+          else
+            node src/push.js --changed-from /tmp/changed.txt 2>&1
+          fi
         env:
           INSTANCE_HOST: ${{ secrets.INSTANCE_HOST }}
           CLIENT_ID: ${{ secrets.CLIENT_ID }}

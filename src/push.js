@@ -8,6 +8,12 @@
  *                                            .sync-pending.json (written by
  *                                            pull.js to clear admin_modified_at).
  *                                            The file is deleted on success.
+ *   node src/push.js --changed-from <file>  Push only templates/assets whose files
+ *                                            appear in <file> (newline-separated
+ *                                            repo-relative paths, as produced by
+ *                                            `git diff --name-only`). Used by the
+ *                                            sync.yml workflow to avoid re-pushing
+ *                                            untouched items on every commit.
  *   node src/push.js --dry-run              Preview what would change (no writes)
  *
  * Items under any `_archived/` directory are never pushed.
@@ -44,10 +50,14 @@ const DRY_RUN = args.includes('--dry-run');
 const ONLY_PENDING = args.includes('--only-pending');
 const slugIndex = args.indexOf('--slug');
 const ONLY_SLUG = slugIndex !== -1 ? args[slugIndex + 1] : null;
+const changedFromIndex = args.indexOf('--changed-from');
+const CHANGED_FROM = changedFromIndex !== -1 ? args[changedFromIndex + 1] : null;
 
 // When ONLY_PENDING is set, restrict pushes to the templates/assets named in
 // .sync-pending.json. When ONLY_SLUG is set, restrict to that one template and
-// skip assets entirely. Otherwise both filters are null and everything is pushed.
+// skip assets entirely. When CHANGED_FROM is set, derive slugs/filenames from
+// the git-diff path list in that file. Otherwise both filters are null and
+// everything is pushed.
 let ONLY_TEMPLATE_SLUGS = null;
 let ONLY_ASSET_FILENAMES = null;
 
@@ -66,6 +76,42 @@ if (ONLY_PENDING) {
 } else if (ONLY_SLUG) {
   ONLY_TEMPLATE_SLUGS = new Set([ONLY_SLUG]);
   ONLY_ASSET_FILENAMES = new Set();
+} else if (CHANGED_FROM) {
+  if (!fs.existsSync(CHANGED_FROM)) {
+    console.error(`[push] --changed-from file not found: ${CHANGED_FROM}`);
+    process.exit(1);
+  }
+  const lines = fs
+    .readFileSync(CHANGED_FROM, 'utf8')
+    .split('\n')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const templateSlugs = new Set();
+  const assetFilenames = new Set();
+  for (const line of lines) {
+    const parts = line.split('/');
+    if (parts[0] === 'article-templates' || parts[0] === 'admin-templates') {
+      if (parts[1] === ARCHIVED) continue;
+      const slug = parts[1];
+      const file = parts[2];
+      if (!slug || (file !== 'template.html' && file !== 'metadata.json')) continue;
+      const baseDir = parts[0] === 'article-templates' ? TEMPLATES_DIR : ADMIN_TEMPLATES_DIR;
+      // Skip deletions — the directory is gone, nothing to push (archival is
+      // handled by pull.js, not by re-uploading).
+      if (fs.existsSync(path.join(baseDir, slug))) {
+        templateSlugs.add(slug);
+      }
+    } else if (parts[0] === 'assets') {
+      if (parts[1] === ARCHIVED) continue;
+      const filename = parts[1];
+      if (!filename || !filename.endsWith('.css')) continue;
+      if (fs.existsSync(path.join(ASSETS_DIR, filename))) {
+        assetFilenames.add(filename);
+      }
+    }
+  }
+  ONLY_TEMPLATE_SLUGS = templateSlugs;
+  ONLY_ASSET_FILENAMES = assetFilenames;
 }
 
 const CI = !!(process.env.CI || process.env.GITHUB_ACTIONS);
@@ -154,6 +200,7 @@ const pushTemplates = async (apiHost, token) => {
   if (entries.length === 0) {
     if (ONLY_PENDING) log('No pending templates to push.');
     else if (ONLY_SLUG) log(`No template found with slug "${ONLY_SLUG}".`);
+    else if (CHANGED_FROM) log('No changed templates to push.');
     else log('No template directories found.');
     return;
   }
@@ -219,6 +266,7 @@ const pushAssets = async (apiHost, token) => {
 
   if (cssFiles.length === 0) {
     if (ONLY_PENDING) log('No pending assets to push.');
+    else if (CHANGED_FROM) log('No changed assets to push.');
     else log('No .css files found in assets/');
     return;
   }
@@ -283,6 +331,12 @@ const main = async () => {
     log(
       `Pending mode — pushing ${ONLY_TEMPLATE_SLUGS.size} template(s) and ` +
         `${ONLY_ASSET_FILENAMES.size} asset(s) from .sync-pending.json.\n`
+    );
+  }
+  if (CHANGED_FROM) {
+    log(
+      `Changed-from mode — pushing ${ONLY_TEMPLATE_SLUGS.size} template(s) and ` +
+        `${ONLY_ASSET_FILENAMES.size} asset(s) derived from ${CHANGED_FROM}.\n`
     );
   }
 

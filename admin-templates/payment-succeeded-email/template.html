@@ -38,13 +38,18 @@
         <!-- {{ range $item := .stripe.invoice.Lines.Data }} -->
         <tr>
             <td style="padding-left: 12px;">{{ $item.Description }}</td>
-            <td>{{ currency $item.Amount }} </td>
+            <td style="text-align: right; padding-right: 20px;">{{ currency $item.Amount }}</td>
         </tr>
         <!-- {{end }} -->
         <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
+        <!-- {{ $coupon := .stripe.invoice.Discount.Coupon }} -->
         <tr>
-            <td style="padding-left: 12px;">{{ .stripe.invoice.Discount.Coupon.Name }}</td>
-            <td>-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }} </td>
+            <!-- {{ if eq $coupon.Duration "repeating" }} -->
+            <td style="padding-left: 12px;">{{ $coupon.Name }}</td>
+            <!-- {{ else }} -->
+            <td style="padding-left: 12px;">Team Discount ( {{ $coupon.PercentOff }}% )</td>
+            <!-- {{ end }} -->
+            <td style="text-align: right; padding-right: 20px;">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>
         </tr>
         <!-- {{ end }} -->
         <tr>
@@ -54,17 +59,17 @@
         </tr>
         <tr>
             <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Total</b></td>
-            <td><b>{{ currency .stripe.invoice.Total }}</b></td>
+            <td style="text-align: right; padding-right: 20px;"><b>{{ currency .stripe.invoice.Total }}</b></td>
         </tr>
         <!-- {{ if (.stripe.invoice.StartingBalance ) }} -->
         <tr>
             <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Applied balance</b></td>
-            <td><b>{{ currency (sub .stripe.invoice.StartingBalance .stripe.invoice.EndingBalance )}}</b></td>
+            <td style="text-align: right; padding-right: 20px;"><b>{{ currency (sub .stripe.invoice.StartingBalance .stripe.invoice.EndingBalance )}}</b></td>
         </tr>
         <!-- {{ end }} -->
         <tr>
             <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Amount paid</b></td>
-            <td><b>{{ currency  .stripe.invoice.AmountPaid }}</b></td>
+            <td style="text-align: right; padding-right: 20px;"><b>{{ currency  .stripe.invoice.AmountPaid }}</b></td>
         </tr>
         <tr><td><br/></td></tr>
         <tr>

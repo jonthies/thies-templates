@@ -44,10 +44,10 @@
         <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
         <!-- {{ $coupon := .stripe.invoice.Discount.Coupon }} -->
         <tr>
-            <!-- {{ if eq $coupon.Duration "repeating" }} -->
-            <td style="padding-left: 12px;">{{ $coupon.Name }}</td>
-            <!-- {{ else }} -->
+            <!-- {{ if eq $coupon.Duration "forever" }} -->
             <td style="padding-left: 12px;">Team Discount ( {{ $coupon.PercentOff }}% )</td>
+            <!-- {{ else }} -->
+            <td style="padding-left: 12px;">{{ $coupon.Name }}</td>
             <!-- {{ end }} -->
             <td style="text-align: right; padding-right: 20px;">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>
         </tr>

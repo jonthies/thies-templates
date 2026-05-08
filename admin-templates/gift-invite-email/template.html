@@ -35,7 +35,7 @@
 
                 <ul>
                     <li><strong>If you don't have a subscription:</strong> you'll receive a {{ .credit.quantity }} {{ .credit.interval }} subscription, expiring on {{ timeFormat .credit.ends_at "LL" }}. To continue past that, add a payment method and turn on auto-renew.</li>
-                    <li><strong>If you already have a monthly subscription:</strong> your subscription will renew as usual with no charge for {{ .credit.quantity }} {{ .credit.interval }}{{ if ne .credit.quantity 1.0 }}s{{ end }}.</li>
+                    <li><strong>If you already have a monthly subscription:</strong> your subscription will renew as usual with no charge for {{ .credit.quantity }} {{ .credit.interval }}{{ if ne .credit.quantity 1 }}s{{ end }}.</li>
                     <li><strong>If you have an annual subscription:</strong> the full value of your gift will be credited toward your next renewal.</li>
                 </ul>
 

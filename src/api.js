@@ -109,6 +109,24 @@ export const templateUpdate = async (apiHost, token, id, template) => {
 };
 
 /**
+ * List articles. Pass options to filter (limit, status, title, order).
+ * Returns an array of articles.
+ */
+export const articleList = async (apiHost, token, { limit = 5, offset = 0, status, title } = {}) => {
+  const params = new URLSearchParams();
+  params.set('offset', String(offset));
+  params.set('limit', String(limit));
+  if (status) params.set('status', status);
+  if (title) params.set('title', title);
+
+  const url = `https://${apiHost}/api/1.0.0/articles?${params}`;
+  if (process.env.DEBUG) console.log('[api] GET', url);
+  const resp = await fetch(url, { headers: authHeaders(token) });
+  await checkResponse(resp);
+  return resp.json();
+};
+
+/**
  * Render a template that already exists in Passport (by ID).
  * Returns the rendered HTML string.
  */

@@ -16,8 +16,9 @@
 
 import fs from 'fs';
 import path from 'path';
+import readline from 'node:readline/promises';
 import { fileURLToPath } from 'url';
-import { getToken, getConfig, templatePreview, emailSend } from './api.js';
+import { getToken, getConfig, templatePreview, emailSend, articleList } from './api.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -40,7 +41,7 @@ const SLUG = getArg('--slug');
 const OPEN = args.includes('--open');
 const CUSTOM_CONTEXT = getArg('--context');
 const CHANNEL_OVERRIDE = getArg('--channel');
-const ARTICLE_ID = getArg('--article-id');
+let ARTICLE_ID = getArg('--article-id');
 const USER_ID = getArg('--user-id');
 const SEND_TO = getArg('--send-to');
 const FROM = getArg('--from');
@@ -91,6 +92,48 @@ const loadMetadata = (baseDir, slug) => {
 };
 
 /**
+ * Fetch recent articles and prompt the user to pick one. Returns the selected
+ * article object (with id, title, summary, ...), or null if the user opted out
+ * (or no articles exist / non-TTY).
+ */
+const promptArticleSelection = async (apiHost, token) => {
+  if (!process.stdin.isTTY) return null;
+
+  log('Fetching articles for selection...');
+  const result = await articleList(apiHost, token, { limit: 5 });
+  const articles = (Array.isArray(result) ? result : result?.body || [])
+    .slice()
+    .sort((a, b) => new Date(b.published_at || 0) - new Date(a.published_at || 0));
+
+  if (articles.length === 0) {
+    log('No articles found — falling back to local context.');
+    return null;
+  }
+
+  console.log('\nSelect an article to preview with:\n');
+  articles.forEach((a, i) => {
+    const date = a.published_at ? new Date(a.published_at).toISOString().slice(0, 10) : 'draft     ';
+    const title = a.title || '(untitled)';
+    console.log(`  ${String(i + 1).padStart(3)}. [${date}] ${title}`);
+  });
+  console.log('    0. Use local context.json\n');
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const answer = (await rl.question('Selection [0]: ')).trim();
+  rl.close();
+
+  if (answer === '' || answer === '0') return null;
+  const idx = Number.parseInt(answer, 10);
+  if (!Number.isInteger(idx) || idx < 1 || idx > articles.length) {
+    log('Invalid selection — using local context.json.');
+    return null;
+  }
+  const picked = articles[idx - 1];
+  log(`Selected: ${picked.title || picked.id}`);
+  return picked;
+};
+
+/**
  * Replace {{ assetBody "file.css" }} helpers with the contents of the local
  * assets/ file so the templatePreview endpoint receives fully-expanded CSS.
  */
@@ -137,6 +180,15 @@ const main = async () => {
   const channel = CHANNEL_OVERRIDE || meta.channel || 'email';
   const body = loadBody(baseDir, SLUG);
 
+  let articlePreheader = null;
+  if (!ARTICLE_ID && !CUSTOM_CONTEXT && baseDir === TEMPLATES_DIR) {
+    const picked = await promptArticleSelection(apiHost, token);
+    if (picked) {
+      ARTICLE_ID = picked.id;
+      articlePreheader = picked.summary || null;
+    }
+  }
+
   const transmute = channel === 'email' || channel === undefined;
   const isSMS = channel === 'sms';
 
@@ -177,7 +229,9 @@ const main = async () => {
     debug_edge_processing: true,
     timeout: '30s',
     ...(USER_ID ? { user_id: USER_ID } : {}),
-    ...(ARTICLE_ID ? { article_id: ARTICLE_ID } : { context: loadContext(baseDir, SLUG) }),
+    ...(ARTICLE_ID
+      ? { article_id: ARTICLE_ID, ...(articlePreheader ? { context: { preheader: articlePreheader } } : {}) }
+      : { context: loadContext(baseDir, SLUG) }),
   };
   const html = await templatePreview(apiHost, token, render);
 

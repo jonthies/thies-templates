@@ -16,29 +16,42 @@
         </tr>
         <tr>
             <td>
-                <br>
-                <h4>
-                    Hi {{ .invite.to.name }},
-                </h4>
-                <h4>
-                    You have been given a {{ currency .credit.amount }} gift subscription to {{ $instance.title }} from {{ .credit.owner_email.name }} ({{.credit.owner_email.address}}). Here is a note from your gift-giver:
-                </h4>
+                <p>Hi {{ .invite.to.name }},</p>
+
+                <p>You have been given a {{ .credit.quantity }} {{ .credit.interval }} gift subscription to {{ $instance.title }} valued at {{ currency .credit.amount }} from {{ .credit.owner_email.name }} ({{ .credit.owner_email.address }}).</p>
+
+                {{ if .invite.message }}
+                <p>Here is a note from your gift-giver:</p>
+
                 <hr>
-                <h4>
-                    {{ .invite.message }}
-                </h4>
+
+                <p style="margin-top: 20px; margin-bottom: 20px;">{{ .invite.message }}</p>
+
                 <hr>
-                <h4>To redeem your gift, set your email delivery preferences, and add podcasts to your favortie player please click this link:</h4>
                 <br>
+                {{ end }}
+
+                <p>What happens when you redeem depends on your current account:</p>
+
+                <ul>
+                    <li><strong>If you don't have a subscription:</strong> you'll receive a {{ .credit.quantity }} {{ .credit.interval }} subscription, expiring on {{ timeFormat .credit.ends_at "LL" }}. To continue past that, add a payment method and turn on auto-renew.</li>
+                    <li><strong>If you already have a monthly subscription:</strong> your subscription will renew as usual with no charge for {{ .credit.quantity }} {{ .credit.interval }}{{ if ne .credit.quantity 1.0 }}s{{ end }}.</li>
+                    <li><strong>If you have an annual subscription:</strong> the full value of your gift will be credited toward your next renewal.</li>
+                </ul>
+
+                <p>To redeem your gift and set your email delivery preferences please click this link:</p>
+
                 <!--{{ with $redeemURI := (printf "/redeem/%s?email=%s&name=%s" .invite.invite_code (urlencode .invite.to.address) (urlencode .invite.to.name )) }} -->
 
-                <a class="button" target="_blank" href="{{ member $redeemURI }}">
-                    <span>Redeem Gift</span>
-                </a>
-                <h4>If you want to continue your subscription past your gift period, please add a credit card and enable auto-renew.</h4>
-                <h4>Welcome!</h4>
+                <p>
+                    <a class="button" target="_blank" href="{{ member $redeemURI }}">
+                        <span>Redeem Gift</span>
+                    </a>
+                </p>
+
+                <p>Welcome!</p>
+
                 <!-- {{ end }} -->
-                <br>
             </td>
         </tr>
     </tbody>

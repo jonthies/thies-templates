@@ -1,0 +1,25 @@
+{
+  "name": "Verify Phone Number",
+  "slug": "verify-phone-number",
+  "type": "admin",
+  "channel": "sms",
+  "title": "",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  },
+  "events": [
+    {
+      "event_source": "atomic",
+      "event_type": "user.sms.verify",
+      "channel": "sms",
+      "enabled": true,
+      "admin": false,
+      "filter": {}
+    }
+  ]
+}

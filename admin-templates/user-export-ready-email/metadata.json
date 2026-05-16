@@ -1,0 +1,15 @@
+{
+  "name": "User Export Ready Email",
+  "slug": "user-export-ready-email",
+  "type": "admin",
+  "channel": "email",
+  "title": "{{ .instance.title }} - User Export Ready",
+  "metadata": {
+    "subject": "",
+    "from_address": {},
+    "reply_to": {},
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": []
+  }
+}

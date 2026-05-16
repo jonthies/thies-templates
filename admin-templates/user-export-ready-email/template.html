@@ -1,0 +1,52 @@
+{{ $inst := instance }}
+
+    <div class="page">
+        <div class="report-container">
+            <div class="top-banner">
+                <div class="top-banner__eyebrow">Passport Export</div>
+                <p class="top-banner__title">
+                    This export was generated from your Passport instance <strong>{{ $inst.name }}</strong>.
+                </p>
+            </div>
+
+            <div class="report-header">
+                <h1 class="report-title">Your user export is ready</h1>
+                <p class="report-description">
+                    The CSV file has been created and is available from the admin job page.
+                </p>
+            </div>
+
+            <p>
+                <a class="button" href="{{ .job.admin_url }}">View and download the export</a>
+            </p>
+
+            <div class="summary">
+                <div class="summary-row">
+                    <div class="summary-label">Rows exported</div>
+                    <div class="summary-value">{{ .export.rows }}</div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-label">File</div>
+                    <div class="summary-value">{{ .export.filename }}</div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-label">Source</div>
+                    <div class="summary-value">{{ .export.source }}</div>
+                </div>
+                {{ if .export.expires_at }}
+                <div class="summary-row">
+                    <div class="summary-label">Available until</div>
+                    <div class="summary-value">{{ timeFormat .export.expires_at "LLL" }}</div>
+                </div>
+                {{ end }}
+                <div class="summary-row">
+                    <div class="summary-label">Job</div>
+                    <div class="summary-value"><a href="{{ .job.admin_url }}">{{ .job.id }}</a></div>
+                </div>
+            </div>
+
+            <p class="muted">
+                You will need to be signed in to the admin console to download the CSV.
+            </p>
+        </div>
+    </div>

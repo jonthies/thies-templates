@@ -1,0 +1,1 @@
+{{ .instance.title }} - Verify your phone number by following the link: {{ shortURL (printf "%s/oauth/verify?access_token=%s" (publicURL) .token ) }}

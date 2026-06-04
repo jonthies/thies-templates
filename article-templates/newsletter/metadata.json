@@ -5,7 +5,7 @@
   "channel": "email",
   "title": "{{ .article.title }}",
   "metadata": {
-    "subject": "{{ .article.title }} - NEWSLETTER",
+    "subject": "{{ .article.title }} - NEWSLETTER  -  {{ timeFormat .article.published_at \"dddd, LL\"}} ",
     "from_address": {
       "address": "jon@jonthies.com",
       "last_verified": "2025-07-30T14:42:57.885151-04:00",

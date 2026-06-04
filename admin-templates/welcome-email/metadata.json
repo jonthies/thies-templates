@@ -3,7 +3,7 @@
   "slug": "welcome-email",
   "type": "admin",
   "channel": "email",
-  "title": "Welcome to {{ .instance.title }}",
+  "title": "Welcome to {{ .instance.title }} -  {{ timeFormat .subscription.updated_at \"LL\"}}",
   "metadata": {
     "subject": "",
     "from_address": {},

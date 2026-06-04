@@ -17,7 +17,7 @@
       "event_source": "stripe",
       "event_type": "charge.failed",
       "channel": "sms",
-      "enabled": false,
+      "enabled": true,
       "admin": false,
       "filter": {}
     }

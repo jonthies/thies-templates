@@ -1,0 +1,427 @@
+<style>
+{{ assetBody "newsletter.css"}}
+{{ assetBody "theankler_footer.css"}}
+</style>
+<style type="text/css">
+    @media only screen and (max-width: 375px) {
+        .lihide {
+            display: none !important;
+        }
+        .lishow {
+            display: table-row !important;
+        }
+    }
+</style>
+<div style="
+    display: none !important;
+    visibility: hidden;
+    mso-hide: all;
+    font-size: 1px;
+    line-height: 1px;
+    max-height: 0px;
+    max-width: 0px;
+    opacity: 0;
+    overflow: hidden;
+    ">
+    {{ .preheader }}
+</div>
+{{ $theme := theme }}
+{{ $instance := instance }}
+{{ $article := article }}
+{{ $user := user }}
+{{ $caption := "" }}
+{{ $credit := "" }}
+{{ $imageURI := $article.image_uri }}
+{{ $featuredMediaURL := "" }}
+{{ $featuredMediaID := "" }}
+{{ $meta := $.article.metadata }}
+{{ if $meta }}
+{{ $caption = index $meta "wp:image_caption" }}
+{{ $credit = index $meta "wp:image_credit" }}
+{{ $featuredCaption := index $meta "wp:metadata:featured_image_caption" }}
+{{ if $featuredCaption }}{{ $caption = $featuredCaption }}{{ end }}
+{{ $featuredMediaURL = index $meta "wp:metadata:featured_media_url" }}
+{{ $featuredMediaID = index $meta "wp:metadata:featured_media_id" }}
+{{ end }}
+<table cellpadding="0" cellspacing="0" border="0" width="40" height="6">
+    <tbody>
+        <tr>
+            <td>
+                <img src="https://sli.theankler.com/imp?s=133033600&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=pixel" width="2" height="6" border="0">
+            </td>
+            <td>
+                <img src="https://sli.theankler.com/imp?s=133033601&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=pixel" width="2" height="6" border="0">
+            </td>
+            <td>
+                <img src="https://sli.theankler.com/imp?s=133033602&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=pixel" width="2" height="6" border="0">
+            </td>
+            <td>
+                <img src="https://sli.theankler.com/imp?s=133033603&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=pixel" width="2" height="6" border="0">
+            </td>
+            <td>
+                <img src="https://sli.theankler.com/imp?s=133033604&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=pixel" width="2" height="6" border="0">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" data-lt-version="3.0.0">
+        <tbody>
+            <tr>
+                <td colspan="2" align="center" style="line-height: 1px">
+                    <img src="https://sli.theankler.com/imp?s=2005899&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; max-height: 12px !important">
+                </td>
+            </tr>
+            <tr class="lihide">
+                <td colspan="2" style="line-height: 1px">
+                    <a href="https://sli.theankler.com/click?s=2005895&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005895&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=desktop&amp;collapse_width=600" border="0" width="600" style="display: block; width: 100% !important; max-width: 600px !important;" class="lihide"></a>
+                </td>
+            </tr>
+            <!--[if !mso]>-->
+            <tr style="display: none" class="lishow">
+                <td colspan="2" style="line-height: 1px">
+                    <a href="https://sli.theankler.com/click?s=2005895&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005895&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=mobile&amp;collapse_width=375" border="0" width="375" style="display: block !important; width: 100% !important; max-width: 375px !important;"></a>
+                </td>
+            </tr>
+            <!--<![endif]-->
+            <tr>
+                <td align="left" style="line-height: 1px">
+                    <a style="display: block; max-width: 116px; max-height: 15px;" href="https://sli.theankler.com/click?s=2005896&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005896&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"></a>
+                </td>
+                <td align="right" style="line-height: 1px">
+                    <a style="display: block; max-width: 19px; max-height: 15px;" href="https://sli.theankler.com/click?s=2005898&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005898&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<table class="main" align="center" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr>
+            <td id="main-cell">&nbsp;&nbsp;<br></td>
+            <td>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>&nbsp;<br></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table class="container" align="center" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center" valign="top">
+                                                <table class="content_header_link" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="left" valign="top" class="entry_content_uri">
+                                                                <a href="{{ token $article.uri }}">View in browser</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="header_logo" align="center" cellpadding="0" cellspacing="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <center>
+                                                                    <a target="_blank" href="{{ $instance.metadata.home}}">
+                                                                        <img src="https://passport.theankler.com/assets/2026-banners-simple-Ankler.png" border="0" alt="The Ankler" class="header_logo_img">
+                                                                    </a>
+                                                                </center>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table class="content" align="center" cellpadding="0" cellspacing="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-bottom: 0px !important; padding-top: 0px !important">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding-bottom: 0">
+                                                                                <a href="{{ token $article.uri }}">
+                                                                                    <h1>{{ .article.title }}</h1>
+                                                                                </a>
+                                                                                {{ if .preheader }}
+                                                                                <h3 class="subheading">{{ .preheader }}</h3>
+                                                                                {{ end }}
+                                                                                <table width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-top: 8px; margin-bottom: 4px;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td class="byline" align="left" valign="middle">By {{ .article.author }}</td>
+                                                                                            <td class="date" align="right" valign="middle">{{ timeFormat $article.published_at "dddd, LL"}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                                <table class="header_logo" align="center" cellspacing="0" border="0" style="padding-top: 20px">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <center>
+                                                                                    {{ if $featuredMediaID }}
+                                                                                    <a href="{{ $featuredMediaURL }}" target="_blank" style="display: block; text-decoration: none;">
+                                                                                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                                                            <tbody><tr>
+                                                                                                <td align="center" style="padding-top: 23.125%; padding-bottom: 23.125%; background-image: url('https://img.youtube.com/vi/{{ $featuredMediaID }}/maxresdefault.jpg'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                                                                                                    <span style="display: inline-block; width: 0; height: 0; border-style: solid; border-top: 30px solid rgba(0,0,0,0); border-right: 0; border-bottom: 30px solid rgba(0,0,0,0); border-left: 52px solid rgba(255,255,255,0.9);"></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody></table>
+                                                                                    </a>
+                                                                                    {{ else if $featuredMediaURL }}
+                                                                                    <a href="{{ $featuredMediaURL }}" target="_blank" style="display: block; text-decoration: none;">
+                                                                                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                                                                            <tbody><tr>
+                                                                                                <td align="center" style="padding-top: 23.125%; padding-bottom: 23.125%; background-image: url('{{ $imageURI }}'); background-size: contain; background-position: center; background-repeat: no-repeat;">
+                                                                                                    <span style="display: inline-block; width: 0; height: 0; border-style: solid; border-top: 30px solid rgba(0,0,0,0); border-right: 0; border-bottom: 30px solid rgba(0,0,0,0); border-left: 52px solid rgba(255,255,255,0.9);"></span>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody></table>
+                                                                                    </a>
+                                                                                    {{ else }}
+                                                                                    <img src="{{ $imageURI }}" border="0" alt="{{ $article.title }}" width="400">
+                                                                                    {{ end }}
+                                                                                </center>
+                                                                            </td>
+                                                                        </tr>
+                                                                        {{ if not $featuredMediaURL }}
+                                                                        <tr>
+                                                                            <td style="padding-top: 0; padding-bottom: 8px; text-align: left;">
+                                                                                {{ if $caption }}
+                                                                                <figcaption>{{ $caption }}</figcaption>
+                                                                                {{ end }}
+                                                                                {{ if $credit }}
+                                                                                <p class="figcredit">{{ $credit }}</p>
+                                                                                {{ end }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        {{ end }}
+                                                                    </tbody>
+                                                                </table>
+                                                                <table align="center" border="0" cellpadding="0" cellspacing="0" data-lt-version="3.0.0">
+                                                                    <tr><td colspan="2" align="center" style="line-height: 1px">
+                                                                        <img src="https://sli.theankler.com/imp?s=2007249&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; max-height: 12px !important" /></td></tr>
+                                                                    <tr class="lihide"><td colspan="2" style="line-height: 1px">
+                                                                        <a href="https://sli.theankler.com/click?s=2007245&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                                                                            <img src="https://sli.theankler.com/imp?s=2007245&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=desktop&amp;collapse_width=600" border="0" width="600" style="display: block; width: 100% !important; max-width: 600px !important;" class="lihide"/></a></td></tr>
+                                                                    <!--[if !mso]>-->
+                                                                    <tr style="display: none" class="lishow">
+                                                                        <td colspan="2" style="line-height: 1px">
+                                                                            <a href="https://sli.theankler.com/click?s=2007245&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                                                                                <img src="https://sli.theankler.com/imp?s=2007245&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=mobile&amp;collapse_width=375" border="0" width="375" style="display: block !important; width: 100% !important; max-width: 375px !important;"/></a></td></tr>
+                                                                    <!--<![endif]-->
+                                                                    <tr><td align="left" style="line-height: 1px">
+                                                                        <a style="display: block; max-width: 116px; max-height: 15px;" href="https://sli.theankler.com/click?s=2007246&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                                                                            <img src="https://sli.theankler.com/imp?s=2007246&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"/></a></td>
+                                                                        <td align="right" style="line-height: 1px">
+                                                                            <a style="display: block; max-width: 19px; max-height: 15px;" href="https://sli.theankler.com/click?s=2007248&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                                                                                <img src="https://sli.theankler.com/imp?s=2007248&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"/></a></td></tr>
+                                                                </table>
+                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="content_body">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" class="article">{{ .article.body }}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="10"><br></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <div>
+                                    <table align="center" border="0" cellpadding="0" cellspacing="0" data-lt-version="3.0.0">
+                                        <tr><td colspan="2" align="center" style="line-height: 1px">
+                                            <img src="https://sli.theankler.com/imp?s=2005904&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; max-height: 12px !important" /></td></tr>
+                                        <tr class="lihide"><td colspan="2" style="line-height: 1px">
+                                            <a href="https://sli.theankler.com/click?s=2005900&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                                                <img src="https://sli.theankler.com/imp?s=2005900&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=desktop&amp;collapse_width=600" border="0" width="600" style="display: block; width: 100% !important; max-width: 600px !important;" class="lihide"/></a></td></tr>
+                                        <!--[if !mso]>-->
+                                        <tr style="display: none" class="lishow">
+                                            <td colspan="2" style="line-height: 1px">
+                                                <a href="https://sli.theankler.com/click?s=2005900&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                                                    <img src="https://sli.theankler.com/imp?s=2005900&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=mobile&amp;collapse_width=375" border="0" width="375" style="display: block !important; width: 100% !important; max-width: 375px !important;"/></a></td></tr>
+                                        <!--<![endif]-->
+                                        <tr><td align="left" style="line-height: 1px">
+                                            <a style="display: block; max-width: 116px; max-height: 15px;" href="https://sli.theankler.com/click?s=2005901&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                                                <img src="https://sli.theankler.com/imp?s=2005901&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"/></a></td>
+                                            <td align="right" style="line-height: 1px">
+                                                <a style="display: block; max-width: 19px; max-height: 15px;" href="https://sli.theankler.com/click?s=2005903&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                                                    <img src="https://sli.theankler.com/imp?s=2005903&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"/></a></td></tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="10"><br></td>
+                        </tr>
+                        <tr>
+                            <td class="footer_container">
+                                <table border="0" cellpadding="0" align="center" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span class="si"> Subscription Information<br><br> </span>
+                                                <span class="subscriber">
+                                                    {{if .member.email }} Member: {{ .member.name }}<br>
+                                                    Email: <a href="mailto:{{ .member.email }}">{{ .member.email }}</a><br>
+                                                    {{ if .subscription.created_at}} {{ if .account.created_at }} Member since: {{timeFormat
+                                        .account.created_at "LL"}}<br>
+                                                    {{ else }} Member since: {{timeFormat .subscription.created_at "LL"}}<br>
+                                                    {{ end }} {{if .subscription.canceled}} Auto-renewal is disabled<br>
+                                                    Expiration date: {{ timeFormat .subscription.ends_at "LL"}}<br>
+                                                    {{else}} Your subscription renews every {{ .subscription.recurring_interval }}<br>
+                                                        Renewal date: {{ timeFormat .subscription.ends_at "LL"}}<br>
+                                                        {{end}} {{end}}{{end}}<br>
+                                                        You are receiving this email because you are subscribed to
+                                                        <a target="_blank" href="{{ $instance.metadata.home}}">{{ $instance.title }}</a>.<br><br>
+                                                        <a target="_blank" href="{{ session (member `/account`)}}">Click here</a> to view your account
+                                                        and manage your subscriptions.<br>
+                                                        <!--{{ with $redirectURI := (member "/unsubscribe") }} ---->
+                                                        <!--{{  $optout := (urlencode (optOut $redirectURI)) }} ---->
+                                                        <!--{{  $unsubscribe := (member (print "/unsubscribe?unsub=" $optout)) }} ---->
+                                                        <a target="_blank" href="{{$unsubscribe}}">Click here</a> to unsubscribe.<br>
+                                                        <!-- {{end}} -->
+                                                </span>
+                                                <span class="copyright">
+                                                    <br><em>
+                                                        © {{ timeFormat $article.published_at "YYYY"}}
+                                                        <a class="em_black" href="{{ $instance.metadata.home}}">{{ $instance.title}}</a>
+                                                        <!-- Stree Address Goes Here<br> -->
+                                                    </em>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<div class="ankler-footer-divider"></div>
+
+<div class="ankler-footer">
+    <div class="body markup" dir="auto">
+
+        {{/* Ankler wordmark */}}
+        <div class="ankler-footer-wordmark">
+            <a target="_blank" href="{{ $instance.metadata.home}}">
+                <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}" class="footer-logo-img">
+            </a>
+        </div>
+
+        {{/* Bordered section: social links + gift button + contacts */}}
+        <div class="ankler-footer-pullquote">
+
+            {{/* Follow us */}}
+            <p class="ankler-footer-social">
+                <span>Follow us:</span><br>
+                <a href="https://www.instagram.com/theankler/" target="_blank">Instagram</a><span> | </span>
+                <a href="https://www.youtube.com/@TheAnkler" target="_blank">YouTube</a><span> | </span>
+                <a href="https://www.linkedin.com/company/the-ankler/" target="_blank">LinkedIn</a><span> | </span>
+                <a href="https://bsky.app/profile/theankler.com" target="_blank">Bluesky</a><span> | </span>
+                <a href="https://www.tiktok.com/@theankler" target="_blank">TikTok</a><span> | </span>
+                <a href="https://x.com/TheAnkler" target="_blank">X</a><span> | </span>
+                <a href="https://www.threads.net/@theankler" target="_blank">Threads</a><span> | </span>
+                <a href="https://www.facebook.com/theankler" target="_blank">Facebook</a><span> | </span>
+                <a href="https://whatsapp.com/channel/theankler" target="_blank">WhatsApp</a>
+            </p>
+
+            {{/* Give a gift subscription */}}
+            <p>
+                <a class="ankler-footer-gift-btn" href="{{ member `/gift`}}" target="_blank">
+                    <span>Give a gift subscription</span>
+                </a>
+            </p>
+
+            {{/* Tips and advertising contacts */}}
+            <p class="ankler-footer-contacts">
+                <strong>
+                    <span>Got a tip or story pitch? Email </span>
+                    <a href="mailto:tips@theankler.com">tips@theankler.com</a><br>
+                    <span>To advertise to our 145,000 subscribers, email </span>
+                    <a href="mailto:Lynne@theankler.com">Lynne@theankler.com</a>
+                </strong>
+            </p>
+        </div>
+    </div>
+</div>
+
+{{/* Footer */}}
+<div class="footer" style="color: rgb(119,119,119); text-align: center; font-size: 16px; line-height: 26px; ">
+    <div style="font-size: 16px; line-height: 26px; padding-bottom: 24px">
+        <p class="footer-meta" style="list-style: none; font-family: system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'; padding-bottom: 0; font-size: 12px; line-height: 16px; margin: 0; color: rgb(119,119,119); text-decoration: unset;">
+            © <span>Ankler Media</span><br>
+            10351 Santa Monica Blvd., Suite 430, Los Angeles, CA 90025<br>
+        </p>
+    </div>
+</div>
+
+<div>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" data-lt-version="3.0.0">
+        <tbody>
+            <tr>
+                <td colspan="2" align="center" style="line-height: 1px">
+                    <img src="https://sli.theankler.com/imp?s=2005909&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; max-height: 12px !important">
+                </td>
+            </tr>
+            <tr class="lihide">
+                <td colspan="2" style="line-height: 1px">
+                    <a href="https://sli.theankler.com/click?s=2005905&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005905&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=desktop&amp;collapse_width=600" border="0" width="600" style="display: block; width: 100% !important; max-width: 600px !important;" class="lihide"></a>
+                </td>
+            </tr>
+            <!--[if !mso]>-->
+            <tr style="display: none" class="lishow">
+                <td colspan="2" style="line-height: 1px">
+                    <a href="https://sli.theankler.com/click?s=2005905&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005905&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=default&amp;li_coord=mobile&amp;collapse_width=375" border="0" width="375" style="display: block !important; width: 100% !important; max-width: 375px !important;"></a>
+                </td>
+            </tr>
+            <!--<![endif]-->
+            <tr>
+                <td align="left" style="line-height: 1px">
+                    <a style="display: block; max-width: 116px; max-height: 15px;" href="https://sli.theankler.com/click?s=2005906&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005906&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"></a>
+                </td>
+                <td align="right" style="line-height: 1px">
+                    <a style="display: block; max-width: 19px; max-height: 15px;" href="https://sli.theankler.com/click?s=2005908&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" rel="nofollow" target="_blank">
+                        <img src="https://sli.theankler.com/imp?s=2005908&amp;e={{ .member.email }}&amp;p=the-ankler_{{ timeFormat $article.published_at "MM_DD_YY" }}&amp;lctg={{ $user.id }}&amp;stpe=static" border="0" style="display: block; min-height: 1px"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

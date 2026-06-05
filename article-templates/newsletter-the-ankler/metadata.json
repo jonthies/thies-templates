@@ -1,0 +1,27 @@
+{
+  "name": "Newsletter - The Ankler",
+  "slug": "newsletter-the-ankler",
+  "type": "article",
+  "channel": "email",
+  "title": "",
+  "metadata": {
+    "subject": "",
+    "from_address": {
+      "address": "newsletters@mail.theankler.com",
+      "last_verified": "2026-04-13T01:02:48.296679791Z",
+      "name": "The Ankler",
+      "verified": true
+    },
+    "reply_to": {
+      "address": "noreply@mail.theankler.com",
+      "last_verified": "2026-04-13T01:12:40.273852791Z",
+      "name": "The Ankler",
+      "verified": true
+    },
+    "tokenize_urls": false,
+    "inactive": false,
+    "audiences": [
+      "CZq2W7Tr3nYtGnfMUAXRa"
+    ]
+  }
+}

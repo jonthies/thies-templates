@@ -76,7 +76,7 @@
 
 
 .ankler-footer-social a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /* Gift subscription button */
@@ -84,7 +84,6 @@
     display: inline-block;
     box-sizing: border-box;
     border: none;
-    border-radius: 4px;
     font-size: 14px;
     line-height: 20px;
     font-weight: 600;
@@ -119,7 +118,7 @@
 }
 
 .ankler-footer-contacts a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .footer-meta {
@@ -154,6 +153,46 @@
     border-bottom: 1px solid #ff490d;
     height: 1px;
 }
+.wp-block-separator.has-custom-aqua-color,
+.wp-block-separator.has-custom-aqua-background-color {
+    border-bottom: 1px solid #0fe6fa;
+    height: 1px;
+}
+.wp-block-separator.has-custom-eggplant-color,
+.wp-block-separator.has-custom-eggplant-background-color {
+    border-bottom: 1px solid #463c55;
+    height: 1px;
+}
+.wp-block-separator.has-custom-olive-color,
+.wp-block-separator.has-custom-olive-background-color {
+    border-bottom: 1px solid #5f7d46;
+    height: 1px;
+}
+.wp-block-separator.has-custom-purple-color,
+.wp-block-separator.has-custom-purple-background-color {
+    border-bottom: 1px solid #be19d7;
+    height: 1px;
+}
+.wp-block-separator.has-custom-lilac-color,
+.wp-block-separator.has-custom-lilac-background-color {
+    border-bottom: 1px solid #690ffa;
+    height: 1px;
+}
+.wp-block-separator.has-custom-yellow-color,
+.wp-block-separator.has-custom-yellow-background-color {
+    border-bottom: 1px solid #fafa0a;
+    height: 1px;
+}
+.wp-block-separator.has-custom-red-color,
+.wp-block-separator.has-custom-red-background-color {
+    border-bottom: 1px solid #da1921;
+    height: 1px;
+}
+.wp-block-separator.has-custom-black-color,
+.wp-block-separator.has-custom-black-background-color {
+    border-bottom: 1px solid #000;
+    height: 1px;
+}
 
 .wp-block-separator.is-style-dots {
     border: none !important;
@@ -166,6 +205,43 @@
 .wp-block-separator.is-style-dots.has-custom-orange-color,
 .wp-block-separator.is-style-dots.has-custom-orange-background-color {
     background: radial-gradient(circle closest-side, #ff490d 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-aqua-color,
+.wp-block-separator.is-style-dots.has-custom-aqua-background-color {
+    background: radial-gradient(circle closest-side, #0fe6fa 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-eggplant-color,
+.wp-block-separator.is-style-dots.has-custom-eggplant-background-color {
+    background: radial-gradient(circle closest-side, #463c55 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-olive-color,
+.wp-block-separator.is-style-dots.has-custom-olive-background-color {
+    background: radial-gradient(circle closest-side, #5f7d46 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-purple-color,
+.wp-block-separator.is-style-dots.has-custom-purple-background-color {
+    background: radial-gradient(circle closest-side, #be19d7 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-lilac-color,
+.wp-block-separator.is-style-dots.has-custom-lilac-background-color {
+    background: radial-gradient(circle closest-side, #690ffa 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-yellow-color,
+.wp-block-separator.is-style-dots.has-custom-yellow-background-color {
+    background: radial-gradient(circle closest-side, #fafa0a 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-red-color,
+.wp-block-separator.is-style-dots.has-custom-red-background-color {
+    background: radial-gradient(circle closest-side, #da1921 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+.wp-block-separator.is-style-dots.has-custom-black-color,
+.wp-block-separator.is-style-dots.has-custom-black-background-color {
+    background: radial-gradient(circle closest-side, #000 100%, transparent 100%) 0 center / 26px 5px repeat-x !important;
+}
+
+.is-style-dots {
+    margin-top: 44px !important;
+    margin-bottom: 24px !important;
 }
 
 .has-text-align-center {
@@ -274,8 +350,45 @@
     border-color: #ff490d !important;
 }
 
+.has-custom-black-color {
+    color: #000 !important;
+}
+.has-custom-black-background-color {
+    background-color: #000 !important;
+}
+.has-custom-black-border-color {
+    border-color: #000 !important;
+}
+
+/* When a block opts into link-color inheritance via `has-link-color`, force its
+   links (which would otherwise pick up --link-color from newsletter.css) to
+   adopt the block's custom text color instead. */
+.has-custom-black-color.has-link-color a {
+    color: #000 !important;
+}
+
+.has-custom-black-color.has-link-color a:hover {
+    color: #ff490d !important;
+}
+
+.atomic-columns-tr > td,
+.atomic-columns-tr > td > p,
+.atomic-columns-tr > td > div,
+.atomic-columns-tr > td > figure {
+    margin-top: 0 !important;
+}
+
+.atomic-columns-tr > td > {
+    padding-right: 0. !important;
+    padding-left: 0 !important;
+}
+
+.wp-block-group {
+    margin-top: 1.5rem;
+}
+
 .has-background.has-global-padding > p:first-child {
-    margin-block-start: 0;
+    margin-top: 0;
 }
 
 .has-small-font-size {
@@ -314,24 +427,47 @@
 }
  
 .is-layout-flex {
-    margin-block-start: 1.5rem !important;
+    margin-top: 1.5rem !important;
 }
 
 .has-border-color {
     border-style: solid !important;
 }
 
-.wp-block-group > h1,
-.wp-block-group > h2,
-.wp-block-group > h3,
-.wp-block-group > h4,
-.wp-block-group > h5,
-.wp-block-group > h6,
-.wp-block-column > h1,
-.wp-block-column > h2,
-.wp-block-column > h3,
-.wp-block-column > h4,
-.wp-block-column > h5,
-.wp-block-column > h6 {
-    margin-block-start: 0 !important;
+[style*="border-width"] {
+    border-style: solid;
+}
+
+.wp-block-group > h1:first-child,
+.wp-block-group > h2:first-child,
+.wp-block-group > h3:first-child,
+.wp-block-group > h4:first-child,
+.wp-block-group > h5:first-child,
+.wp-block-group > h6:first-child,
+.wp-block-column > h1:first-child,
+.wp-block-column > h2:first-child,
+.wp-block-column > h3:first-child,
+.wp-block-column > h4:first-child,
+.wp-block-column > h5:first-child,
+.wp-block-column > h6:first-child {
+    margin-top: 0 !important;
+}
+
+.wp-block-group > table {
+    margin-top: 0 !important;
+}
+
+/* List styles for default unordered lists */
+.wp-block-list li {
+	margin-bottom:16px;
+}
+
+table[role="presentation"] {
+    border: 1px solid #000;
+}
+.apple-podcasts-scap {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    border-style:none !important;
+    border-width:0 !important;
 }

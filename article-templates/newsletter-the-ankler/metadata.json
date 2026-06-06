@@ -7,21 +7,19 @@
   "metadata": {
     "subject": "",
     "from_address": {
-      "address": "newsletters@mail.theankler.com",
-      "last_verified": "2026-04-13T01:02:48.296679791Z",
-      "name": "The Ankler",
+      "address": "jon@jonthies.com",
+      "last_verified": "2025-07-30T14:42:57.885151-04:00",
+      "name": "JON THIES",
       "verified": true
     },
     "reply_to": {
-      "address": "noreply@mail.theankler.com",
-      "last_verified": "2026-04-13T01:12:40.273852791Z",
-      "name": "The Ankler",
+      "address": "jon@jonthies.com",
+      "last_verified": "2025-07-30T14:42:57.885151-04:00",
+      "name": "JON THIES",
       "verified": true
     },
     "tokenize_urls": false,
     "inactive": false,
-    "audiences": [
-      "CZq2W7Tr3nYtGnfMUAXRa"
-    ]
+    "audiences": []
   }
 }

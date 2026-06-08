@@ -158,14 +158,14 @@ td {
 
 figure {
     max-width: 600px;
+    display: table;        /* was: display: block; (and remove the width: fit-content lines) */
     margin: auto;
     margin-top: 1.5rem;
-    display: block;
 }
 
 figure img {
     max-width:580px;
-    margin: 0;
+    margin: 0 auto;
     height: auto;
 }
 
@@ -176,14 +176,16 @@ li figure img {
     max-width: 545px;
 }
 figcaption {
-    font-weight:400;
-    font-size:16px;
-    font-family: var(--font-face);
-    text-align:left;
-    font-style:italic;
-    color: var(--foreground-color);
-    line-height:2;
-}
+      display: table-caption;   /* added */
+      caption-side: bottom;     /* added — keep caption below the image */
+      font-weight: 400;
+      font-size: 16px;
+      font-family: var(--font-face);
+      text-align: left;         /* unchanged — left-aligns under the image's left edge */
+      font-style: italic;
+      color: var(--foreground-color);
+      line-height: 2;
+  }
 
 hr {
   border: none;

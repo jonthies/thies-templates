@@ -51,7 +51,7 @@
                                     <!-- {{end }} -->
                                     <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
                                     <!-- {{ $coupon := .stripe.invoice.Discount.Coupon }} -->
-                                    <!-- {{ if and (eq $coupon.Duration "forever") (eq $coupon.Name $coupon.Id) }} -->
+                                    <!-- {{ if and (eq $coupon.Duration "forever") (eq $coupon.Name $coupon.ID) }} -->
                                     <tr>
                                         <td style="padding-left: 12px;">Team Discount ( {{ $coupon.PercentOff }}% )</td>
                                         <td align="right">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>

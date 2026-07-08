@@ -1,93 +1,121 @@
 {{ $theme := theme }}
 {{ $instance := instance }}
 <style>{{ assetBody "passport_admin.css"}}</style>
-<table style="display: block; padding-top: 24px;">
+
+<table class="email-body-container" role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>
-            <td class="email-header">
-                <a target="_blank" href="{{ $instance.metadata.home}}">
-                    {{ if $theme.banner }}
-                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
-                    {{ else }}
-                        <span class="email-header-text">{{ $instance.title }}</span>
-                    {{ end }}
-                </a>
-            </td>
+            <td></td>
+            <td class="content" width="550"></td>
+            <td></td>
         </tr>
         <tr>
-            <td>
-                <br>
-                <h4>
-                    Hi {{ .member.name }},
-                </h4>
-                <h4>
-                    Thank you for your payment.
-                </h4>
-                <h4>
-                    Receipt from {{ $instance.title }} on {{ timeFormat .timestamp "LL" }}.
-                </h4>
-                <br>
-                <br>
-            </td>
-        </tr>
-        <tr>
-            <td>
+            <td></td>
+            <td class="content" width="550" align="left">
+                <div style="max-width: 550px; width: 100%; margin: 0 auto; overflow-wrap: break-word; box-sizing: border-box;">
 
+                    {{/* Header */}}
+                    <table style="display: block; padding-top: 24px;" role="presentation">
+                        <tbody>
+                            <tr>
+                                <td class="email-header">
+                                    <a target="_blank" href="{{ $instance.metadata.home }}">
+                                        {{ if $theme.banner }}
+                                        <img src="{{ $theme.banner }}" border="0" alt="{{ $instance.title }}">
+                                        {{ else }}
+                                        <span class="email-header-text">{{ $instance.title }}</span>
+                                        {{ end }}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    {{/* Body */}}
+                    <div class="post typography" dir="auto" style="padding: 32px 0 0 0;">
+                        <div class="body markup" dir="auto">
+
+                            <p>Hi {{ .member.name }},</p>
+
+                            <p>Thank you for your payment.</p>
+
+                            <p>Receipt from {{ $instance.title }} on {{ timeFormat .timestamp "LL" }}.</p>
+
+                            <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 16px;">
+                                <tbody>
+                                    <!-- {{ range $item := .stripe.invoice.Lines.Data }} -->
+                                    <tr>
+                                        <td style="padding-left: 12px;">{{ $item.Description }}</td>
+                                        <td align="right">{{ currency $item.Amount }}</td>
+                                    </tr>
+                                    <!-- {{end }} -->
+                                    <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
+                                    <!-- {{ $coupon := .stripe.invoice.Discount.Coupon }} -->
+                                    <!-- {{ if and (eq $coupon.Duration "forever") (eq $coupon.Name $coupon.Id) }} -->
+                                    <tr>
+                                        <td style="padding-left: 12px;">Team Discount ( {{ $coupon.PercentOff }}% )</td>
+                                        <td align="right">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>
+                                    </tr>
+                                    <!-- {{ else if $coupon.PercentOff }} -->
+                                    <tr>
+                                        <td style="padding-left: 12px;">{{ $coupon.Name }} ( {{ $coupon.PercentOff }}% off)</td>
+                                        <td align="right">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>
+                                    </tr>
+                                    <!-- {{ else }} -->
+                                    <tr>
+                                        <td style="padding-left: 12px;">Discount ( Grandfathered Price )</td>
+                                        <td align="right">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>
+                                    </tr>
+                                    <!-- {{ end }} -->
+                                    <!-- {{ end }} -->
+                                    <tr>
+                                        <td colspan="2"><hr></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Total</b></td>
+                                        <td align="right"><b>{{ currency .stripe.invoice.Total }}</b></td>
+                                    </tr>
+                                    <!-- {{ if (.stripe.invoice.StartingBalance ) }} -->
+                                    <tr>
+                                        <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Applied balance</b></td>
+                                        <td align="right"><b>{{ currency (sub .stripe.invoice.StartingBalance .stripe.invoice.EndingBalance )}}</b></td>
+                                    </tr>
+                                    <!-- {{ end }} -->
+                                    <tr>
+                                        <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Amount paid</b></td>
+                                        <td align="right"><b>{{ currency  .stripe.invoice.AmountPaid }}</b></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <p>
+                                <a target="_blank" href="{{ .stripe.invoice.HostedInvoiceURL }}" style="margin-right: 20px">
+                                    <span>Download Receipt</span>
+                                </a>
+                                <span style="font-size: 12px">Receipt link valid for 30 days.</span>
+                            </p>
+
+                            <p>
+                                <a target="_blank" href="{{ session (member `/invoices`)}}">
+                                    <span>View All Invoices and Receipts</span>
+                                </a>
+                            </p>
+
+                        </div>
+                    </div>
+
+                    {{/* Footer */}}
+                    <div class="footer" style="padding: 24px 0;">
+                        <div style="padding-bottom: 24px">
+                            <p class="footer-meta">
+                                © {{ now | date "2006" }} <span>{{ $instance.title }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
             </td>
-        </tr>
-        <!-- {{ range $item := .stripe.invoice.Lines.Data }} -->
-        <tr>
-            <td style="padding-left: 12px;">{{ $item.Description }}</td>
-            <td style="text-align: right; padding-right: 20px;">{{ currency $item.Amount }}</td>
-        </tr>
-        <!-- {{end }} -->
-        <!-- {{ if and .stripe.invoice.Discount (gt (index .stripe.invoice.TotalDiscountAmounts 0).Amount 0) }} -->
-        <!-- {{ $coupon := .stripe.invoice.Discount.Coupon }} -->
-        <tr>
-            <!-- {{ if and (eq $coupon.Duration "forever") (eq $coupon.Name $coupon.ID) }} -->
-            <td style="padding-left: 12px;">Team Discount ( {{ $coupon.PercentOff }}% )</td>
-            <!-- {{ else }} -->
-            <td style="padding-left: 12px;">{{ $coupon.Name }}<!-- {{ if $coupon.PercentOff }} --> ( {{ $coupon.PercentOff }}% off)<!-- {{ end }} --></td>
-            <!-- {{ end }} -->
-            <td style="text-align: right; padding-right: 20px;">-{{ currency (index .stripe.invoice.TotalDiscountAmounts 0).Amount }}</td>
-        </tr>
-        <!-- {{ end }} -->
-        <tr>
-            <td colspan="2">
-                <hr>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Total</b></td>
-            <td style="text-align: right; padding-right: 20px;"><b>{{ currency .stripe.invoice.Total }}</b></td>
-        </tr>
-        <!-- {{ if (.stripe.invoice.StartingBalance ) }} -->
-        <tr>
-            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Applied balance</b></td>
-            <td style="text-align: right; padding-right: 20px;"><b>{{ currency (sub .stripe.invoice.StartingBalance .stripe.invoice.EndingBalance )}}</b></td>
-        </tr>
-        <!-- {{ end }} -->
-        <tr>
-            <td style="padding-left: 12px; text-align: right; padding-right: 20px;"><b>Amount paid</b></td>
-            <td style="text-align: right; padding-right: 20px;"><b>{{ currency  .stripe.invoice.AmountPaid }}</b></td>
-        </tr>
-        <tr><td><br/></td></tr>
-        <tr>
-            <td>
-                <a target="_blank" href="{{ .stripe.invoice.HostedInvoiceURL }}" style="margin-right: 20px">
-                    <span>Download Receipt</span>
-                </a>
-                <span style="font-size: 12px">Receipt link valid for 30 days.</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <br/>
-                <br/>
-                <a target="_blank" href="{{ session (member `/invoices`)}}" style="padding-top: 32px">
-                    <span>View All Invoices and Receipts</span>
-                </a>
-            </td>
+            <td></td>
         </tr>
     </tbody>
 </table>
